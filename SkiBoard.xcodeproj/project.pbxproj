@@ -20,6 +20,10 @@
 		538EBD6F14ACBC140017B6F3 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 538EBD6E14ACBC140017B6F3 /* SecondViewController.m */; };
 		538EBD7114ACBC140017B6F3 /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 538EBD7014ACBC140017B6F3 /* second.png */; };
 		538EBD7314ACBC140017B6F3 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 538EBD7214ACBC140017B6F3 /* second@2x.png */; };
+		53CAB08314ACE899003FE7E0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53CAB08214ACE899003FE7E0 /* CoreLocation.framework */; };
+		53CAB08614B34E54003FE7E0 /* skiboard.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 53CAB08514B34E54003FE7E0 /* skiboard.sqlite */; };
+		53CAB08814B3507D003FE7E0 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53CAB08714B3507D003FE7E0 /* libsqlite3.0.dylib */; };
+		53CAB08F14B35B99003FE7E0 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53CAB08E14B35B99003FE7E0 /* CoreMotion.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +46,10 @@
 		538EBD6E14ACBC140017B6F3 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		538EBD7014ACBC140017B6F3 /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		538EBD7214ACBC140017B6F3 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
+		53CAB08214ACE899003FE7E0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		53CAB08514B34E54003FE7E0 /* skiboard.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = skiboard.sqlite; sourceTree = SOURCE_ROOT; };
+		53CAB08714B3507D003FE7E0 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		53CAB08E14B35B99003FE7E0 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +57,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53CAB08F14B35B99003FE7E0 /* CoreMotion.framework in Frameworks */,
+				53CAB08814B3507D003FE7E0 /* libsqlite3.0.dylib in Frameworks */,
+				53CAB08314ACE899003FE7E0 /* CoreLocation.framework in Frameworks */,
 				538EBD5214ACBC140017B6F3 /* UIKit.framework in Frameworks */,
 				538EBD5414ACBC140017B6F3 /* Foundation.framework in Frameworks */,
 				538EBD5614ACBC140017B6F3 /* CoreGraphics.framework in Frameworks */,
@@ -78,6 +89,8 @@
 		538EBD5014ACBC140017B6F3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				53CAB08E14B35B99003FE7E0 /* CoreMotion.framework */,
+				53CAB08214ACE899003FE7E0 /* CoreLocation.framework */,
 				538EBD5114ACBC140017B6F3 /* UIKit.framework */,
 				538EBD5314ACBC140017B6F3 /* Foundation.framework */,
 				538EBD5514ACBC140017B6F3 /* CoreGraphics.framework */,
@@ -88,6 +101,7 @@
 		538EBD5714ACBC140017B6F3 /* SkiBoard */ = {
 			isa = PBXGroup;
 			children = (
+				53CAB08414B34E38003FE7E0 /* DataBase */,
 				538EBD6014ACBC140017B6F3 /* AppDelegate.h */,
 				538EBD6114ACBC140017B6F3 /* AppDelegate.m */,
 				538EBD6314ACBC140017B6F3 /* MainStoryboard.storyboard */,
@@ -113,6 +127,15 @@
 				538EBD5F14ACBC140017B6F3 /* SkiBoard-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		53CAB08414B34E38003FE7E0 /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				53CAB08714B3507D003FE7E0 /* libsqlite3.0.dylib */,
+				53CAB08514B34E54003FE7E0 /* skiboard.sqlite */,
+			);
+			name = DataBase;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,6 +194,7 @@
 				538EBD6C14ACBC140017B6F3 /* first@2x.png in Resources */,
 				538EBD7114ACBC140017B6F3 /* second.png in Resources */,
 				538EBD7314ACBC140017B6F3 /* second@2x.png in Resources */,
+				53CAB08614B34E54003FE7E0 /* skiboard.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,7 +285,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SkiBoard/SkiBoard-Prefix.pch";
 				INFOPLIST_FILE = "SkiBoard/SkiBoard-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -272,7 +299,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SkiBoard/SkiBoard-Prefix.pch";
 				INFOPLIST_FILE = "SkiBoard/SkiBoard-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -296,6 +326,7 @@
 				538EBD7814ACBC140017B6F3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

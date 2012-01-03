@@ -14,9 +14,94 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    motionState=NO;
+    motionManager = [[CMMotionManager alloc] init];
+    motionManager.accelerometerUpdateInterval = 1.0 / accelUpdateFrequency;
+    
+    gpsState=NO;
+    locationManager=[[CLLocationManager alloc] init];
+    locationManager.delegate=self;
+    locationManager.desiredAccuracy=kCLLocationAccuracyNearestTenMeters;
+    [self startGPSDetect];
+    
+    lastLoc = [[CLLocation alloc] init];
+   
+
     // Override point for customization after application launch.
     return YES;
 }
+
+
+-(bool)getMotionState{
+    return motionState;
+}
+
+-(bool)getGPSState{
+    return gpsState;
+}
+
+-(void)stopGPSDetect{
+    [locationManager stopUpdatingLocation];
+    gpsState=NO;
+}
+
+-(void)startGPSDetect{
+    [locationManager startUpdatingLocation];
+    gpsState=YES;
+}
+
+- (void)stopMotionDetect {
+    [motionManager stopAccelerometerUpdates];
+    motionState = NO;
+}
+
+
+- (void)startMotionDetect
+{
+    [motionManager startAccelerometerUpdatesToQueue:[[NSOperationQueue alloc] init]
+                                        withHandler:^(CMAccelerometerData *data, NSError *error) {
+                                            dispatch_async(dispatch_get_main_queue(), ^{
+                                                NSDictionary* accDict = [NSDictionary dictionaryWithObject: data                                                                                                    forKey: @"accel"];
+                                                [[NSNotificationCenter defaultCenter]	postNotificationName:	@"accelNotification" 
+                                                                            object:  nil
+                                                                            userInfo:accDict];
+                                            });
+                                        }
+     ];
+    motionState = YES;
+}
+
+
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
+    [[NSNotificationCenter defaultCenter]	postNotificationName:	@"locationWarningOFF" object:  nil];
+    [self startMotionDetect];
+    if ([locTimer isValid]){
+        [locTimer invalidate];
+        locTimer=nil;
+    }
+    lastLoc = [[CLLocation alloc] initWithCoordinate:newLocation.coordinate altitude:newLocation.altitude horizontalAccuracy:newLocation.horizontalAccuracy verticalAccuracy:newLocation.verticalAccuracy course:newLocation.course speed:newLocation.speed timestamp:newLocation.timestamp];
+    [[NSNotificationCenter defaultCenter]	postNotificationName:	@"locateNotification" object:  nil];
+    NSLog(@"loc not send");
+    locTimer = [NSTimer scheduledTimerWithTimeInterval:locWarningTime
+                                                target:self
+                                              selector:@selector(warningButton)
+                                              userInfo:nil
+                                               repeats:YES];
+}
+
+-(void)warningButton{
+    [[NSNotificationCenter defaultCenter]	postNotificationName:	@"locationWarning" object:  nil];
+    [self stopMotionDetect];
+}
+
+
+- (CLLocation *)getLastLocation {
+    return lastLoc;
+}
+
+
+
 							
 - (void)applicationWillResignActive:(UIApplication *)application
 {

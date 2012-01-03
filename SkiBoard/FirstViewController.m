@@ -7,8 +7,11 @@
 //
 
 #import "FirstViewController.h"
+#import "AppDelegate.h"
+#define myAppDelegate (AppDelegate*) [[UIApplication sharedApplication] delegate]
 
 @implementation FirstViewController
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -21,11 +24,56 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter]	
+     addObserver: self
+     selector: @selector(accelerometer:)
+     name: @"accelNotification"
+     object: nil];
+    
+    [[NSNotificationCenter defaultCenter]	
+     addObserver: self
+     selector: @selector(showGPS)
+     name: @"locateNotification"
+     object: nil];
+    [self showGPS];
+
+    
 	// Do any additional setup after loading the view, typically from a nib.
+}
+
+- (void)accelerometer{
+    
+}
+
+- (void)showGPS{
+            
+    userLocation = [myAppDelegate getLastLocation];
+    avSpeed.text = [NSString stringWithFormat:@"%.2f", [userLocation speed]];
+    alt.text = [NSString stringWithFormat:@"%.3f", [userLocation altitude]];
+    lat.text = [NSString stringWithFormat:@"%.3f", userLocation.coordinate.latitude];
+    lon.text = [NSString stringWithFormat:@"%.3f", userLocation.coordinate.longitude];
+    
+    
 }
 
 - (void)viewDidUnload
 {
+
+    [maxSpeed release];
+    maxSpeed = nil;
+    [avSpeed release];
+    avSpeed = nil;
+    [distance release];
+    distance = nil;
+    [graphView release];
+    graphView = nil;
+    [lat release];
+    lat = nil;
+    [lon release];
+    lon = nil;
+    [alt release];
+    alt = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -57,4 +105,20 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
+- (void)dealloc {
+    [maxSpeed release];
+    [maxSpeed release];
+    [avSpeed release];
+    [distance release];
+    [graphView release];
+    [lat release];
+    [lon release];
+    [alt release];
+    [super dealloc];
+    
+    [[NSNotificationCenter defaultCenter]	
+     removeObserver: self
+     name:  @"accelNotification"
+     object: nil];
+}
 @end
