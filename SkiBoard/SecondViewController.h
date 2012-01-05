@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CorePlot-CocoaTouch.h"
+#import "TUTSimpleScatterPlot.h"
 
-@interface SecondViewController : UIViewController
+@interface SecondViewController : UIViewController{
+    IBOutlet CPTGraphHostingView *_graphHostingView;
+    TUTSimpleScatterPlot *_scatterPlot;
+}
+
+@property (nonatomic, retain) TUTSimpleScatterPlot *scatterPlot;
 
 @end
