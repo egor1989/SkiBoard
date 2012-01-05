@@ -27,7 +27,7 @@
     
     [[NSNotificationCenter defaultCenter]	
      addObserver: self
-     selector: @selector(accelerometer:)
+     selector: @selector(accelerometer)
      name: @"accelNotification"
      object: nil];
     
@@ -36,7 +36,7 @@
      selector: @selector(showGPS)
      name: @"locateNotification"
      object: nil];
-    [self showGPS];
+    //[self showGPS];
 
     
 	// Do any additional setup after loading the view, typically from a nib.
@@ -47,7 +47,7 @@
 }
 
 - (void)showGPS{
-            
+    NSLog(@"showGPS");        
     userLocation = [myAppDelegate getLastLocation];
     avSpeed.text = [NSString stringWithFormat:@"%.2f", [userLocation speed]];
     alt.text = [NSString stringWithFormat:@"%.3f", [userLocation altitude]];
@@ -59,7 +59,7 @@
 
 - (void)viewDidUnload
 {
-
+    NSLog(@"viewDidUnload");
     [maxSpeed release];
     maxSpeed = nil;
     [avSpeed release];

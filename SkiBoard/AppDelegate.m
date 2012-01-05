@@ -26,9 +26,44 @@
     
     lastLoc = [[CLLocation alloc] init];
    
-
+    //Database
+	databaseName = @"skiboard.sqlite";
+	
+	NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *documentsDir = [documentPaths objectAtIndex:0];
+	databasePath = [documentsDir stringByAppendingPathComponent:databaseName];
+    [self checkAndCreateDatabase];
+    NSLog(@"download");
     // Override point for customization after application launch.
     return YES;
+}
+
+-(void) checkAndCreateDatabase{
+	// Check if the SQL database has already been saved to the users phone, if not then copy it over
+	BOOL success;
+	
+	// Create a FileManager object, we will use this to check the status
+	// of the database and to copy it over if required
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+	
+	// Check if the database has already been created in the users filesystem
+	success = [fileManager fileExistsAtPath:databasePath];
+	
+	// If the database already exists then return without doing anything
+    if (success) {
+        NSLog(@"success");
+    }
+	if(success) return;
+	
+	// If not then proceed to copy the database from the application to the users filesystem
+	
+	// Get the path to the database in the application package
+	NSString *databasePathFromApp = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:databaseName];
+	
+	// Copy the database from the package to the users filesystem
+	[fileManager copyItemAtPath:databasePathFromApp toPath:databasePath error:nil];
+	
+	[fileManager release];
 }
 
 
@@ -82,7 +117,7 @@
     }
     lastLoc = [[CLLocation alloc] initWithCoordinate:newLocation.coordinate altitude:newLocation.altitude horizontalAccuracy:newLocation.horizontalAccuracy verticalAccuracy:newLocation.verticalAccuracy course:newLocation.course speed:newLocation.speed timestamp:newLocation.timestamp];
     [[NSNotificationCenter defaultCenter]	postNotificationName:	@"locateNotification" object:  nil];
-    NSLog(@"loc not send");
+  //  NSLog(@"loc not send");
     locTimer = [NSTimer scheduledTimerWithTimeInterval:locWarningTime
                                                 target:self
                                               selector:@selector(warningButton)
