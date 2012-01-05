@@ -10,7 +10,13 @@
 #import "AppDelegate.h"
 #define myAppDelegate (AppDelegate*) [[UIApplication sharedApplication] delegate]
 
+static sqlite3 *database = nil;
+static sqlite3_stmt *deleteStmt = nil;
+static sqlite3_stmt *addStmt = nil;
+
+
 @implementation DatabaseActions
+
 
 -(id) initDataBase{
     [super init];
