@@ -48,9 +48,9 @@
     
     // Add some padding to the graph, with more at the bottom for axis labels.
     self.graph.plotAreaFrame.paddingTop = 20.0f;
-    self.graph.plotAreaFrame.paddingRight = 20.0f;
+    self.graph.plotAreaFrame.paddingRight = 40.0f;
     self.graph.plotAreaFrame.paddingBottom = 50.0f;
-    self.graph.plotAreaFrame.paddingLeft = 20.0f;
+    self.graph.plotAreaFrame.paddingLeft = 40.0f;
     
     // Tie the graph we've created with the hosting view.
     self.hostingView.hostedGraph = self.graph;
@@ -60,14 +60,14 @@
     
     // Create a line style that we will apply to the axis and data line.
     CPTMutableLineStyle *lineStyle = [CPTMutableLineStyle lineStyle];
-    lineStyle.lineColor = [CPTColor whiteColor];
+    lineStyle.lineColor = [CPTColor blackColor];
     lineStyle.lineWidth = 2.0f;
     
     // Create a text style that we will use for the axis labels.
     CPTMutableTextStyle *textStyle = [CPTMutableTextStyle textStyle];
     textStyle.fontName = @"Helvetica";
     textStyle.fontSize = 14;
-    textStyle.color = [CPTColor whiteColor];
+    textStyle.color = [CPTColor blackColor];
     
     // Create the plot symbol we're going to use.
     CPTPlotSymbol *plotSymbol = [CPTPlotSymbol crossPlotSymbol];
@@ -75,7 +75,7 @@
     plotSymbol.size = CGSizeMake(8.0, 8.0);
     
     // Setup some floats that represent the min/max values on our axis.
-    float xAxisMin = -10;
+    float xAxisMin = 0;
     float xAxisMax = 10;
     float yAxisMin = 0;
     float yAxisMax = 100;
