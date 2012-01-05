@@ -20,6 +20,7 @@
 		538EBD6F14ACBC140017B6F3 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 538EBD6E14ACBC140017B6F3 /* SecondViewController.m */; };
 		538EBD7114ACBC140017B6F3 /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 538EBD7014ACBC140017B6F3 /* second.png */; };
 		538EBD7314ACBC140017B6F3 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 538EBD7214ACBC140017B6F3 /* second@2x.png */; };
+		5391D41414B60FBE0085D1A8 /* DatabaseActions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5391D41314B60FBE0085D1A8 /* DatabaseActions.m */; };
 		53CAB08314ACE899003FE7E0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53CAB08214ACE899003FE7E0 /* CoreLocation.framework */; };
 		53CAB08614B34E54003FE7E0 /* skiboard.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 53CAB08514B34E54003FE7E0 /* skiboard.sqlite */; };
 		53CAB08814B3507D003FE7E0 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53CAB08714B3507D003FE7E0 /* libsqlite3.0.dylib */; };
@@ -46,6 +47,8 @@
 		538EBD6E14ACBC140017B6F3 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		538EBD7014ACBC140017B6F3 /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		538EBD7214ACBC140017B6F3 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
+		5391D41214B60FBE0085D1A8 /* DatabaseActions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseActions.h; sourceTree = "<group>"; };
+		5391D41314B60FBE0085D1A8 /* DatabaseActions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseActions.m; sourceTree = "<group>"; };
 		53CAB08214ACE899003FE7E0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		53CAB08514B34E54003FE7E0 /* skiboard.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = skiboard.sqlite; sourceTree = SOURCE_ROOT; };
 		53CAB08714B3507D003FE7E0 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
@@ -134,6 +137,8 @@
 			children = (
 				53CAB08714B3507D003FE7E0 /* libsqlite3.0.dylib */,
 				53CAB08514B34E54003FE7E0 /* skiboard.sqlite */,
+				5391D41214B60FBE0085D1A8 /* DatabaseActions.h */,
+				5391D41314B60FBE0085D1A8 /* DatabaseActions.m */,
 			);
 			name = DataBase;
 			sourceTree = "<group>";
@@ -209,6 +214,7 @@
 				538EBD6214ACBC140017B6F3 /* AppDelegate.m in Sources */,
 				538EBD6814ACBC140017B6F3 /* FirstViewController.m in Sources */,
 				538EBD6F14ACBC140017B6F3 /* SecondViewController.m in Sources */,
+				5391D41414B60FBE0085D1A8 /* DatabaseActions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,20 +13,32 @@
 
 @interface FirstViewController : UIViewController{
     
+    NSInteger userID;
+    NSString *userName;
+    NSData *time;
+    double speed;
+    double longitude;
+    double latitude;
+    double altitude;
+    
     IBOutlet UILabel *alt;
     IBOutlet UILabel *lon;
     IBOutlet UILabel *lat;
     IBOutlet UILabel *maxSpeed;
+    
+    
     CLLocation *userLocation;
     
     IBOutlet UILabel *avSpeed;
-    
     IBOutlet UILabel *distance;
-    
     IBOutlet UIView *graphView;
 }
 - (void)accelerometer;
 - (void)showGPS;
+
+- (IBAction) addRecord;
+
+
     
 
 
