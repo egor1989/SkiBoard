@@ -13,6 +13,7 @@
 @implementation FirstViewController
 
 
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -36,8 +37,6 @@
      selector: @selector(showGPS)
      name: @"locateNotification"
      object: nil];
-    //[self showGPS];
-
     
 	// Do any additional setup after loading the view, typically from a nib.
 }
@@ -54,6 +53,12 @@
     lat.text = [NSString stringWithFormat:@"%.3f", userLocation.coordinate.latitude];
     lon.text = [NSString stringWithFormat:@"%.3f", userLocation.coordinate.longitude];
     
+    
+}
+
+- (IBAction) addRecord{
+    DatabaseActions *add = [[DatabaseActions alloc] init];
+    [add addRecord];
     
 }
 
@@ -74,6 +79,7 @@
     lon = nil;
     [alt release];
     alt = nil;
+  
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -114,7 +120,7 @@
     [lat release];
     [lon release];
     [alt release];
-    [super dealloc];
+       [super dealloc];
     
     [[NSNotificationCenter defaultCenter]	
      removeObserver: self
