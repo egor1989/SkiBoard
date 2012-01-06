@@ -48,9 +48,9 @@
     
     // Add some padding to the graph, with more at the bottom for axis labels.
     self.graph.plotAreaFrame.paddingTop = 20.0f;
-    self.graph.plotAreaFrame.paddingRight = 40.0f;
+    self.graph.plotAreaFrame.paddingRight = 20.0f;
     self.graph.plotAreaFrame.paddingBottom = 50.0f;
-    self.graph.plotAreaFrame.paddingLeft = 40.0f;
+    self.graph.plotAreaFrame.paddingLeft = 55.0f;
     
     // Tie the graph we've created with the hosting view.
     self.hostingView.hostedGraph = self.graph;
@@ -61,7 +61,7 @@
     // Create a line style that we will apply to the axis and data line.
     CPTMutableLineStyle *lineStyle = [CPTMutableLineStyle lineStyle];
     lineStyle.lineColor = [CPTColor blackColor];
-    lineStyle.lineWidth = 2.0f;
+    lineStyle.lineWidth = 1.0f;
     
     // Create a text style that we will use for the axis labels.
     CPTMutableTextStyle *textStyle = [CPTMutableTextStyle textStyle];
@@ -76,7 +76,7 @@
     
     // Setup some floats that represent the min/max values on our axis.
     float xAxisMin = 0;
-    float xAxisMax = 10;
+    float xAxisMax = 50;
     float yAxisMin = 0;
     float yAxisMax = 100;
     
@@ -88,7 +88,7 @@
     // Modify the graph's axis with a label, line style, etc.
     CPTXYAxisSet *axisSet = (CPTXYAxisSet *)self.graph.axisSet;
     
-    axisSet.xAxis.title = @"Data X";
+    axisSet.xAxis.title = @"Номер записи в БД";
     axisSet.xAxis.titleTextStyle = textStyle;
     axisSet.xAxis.titleOffset = 30.0f;
     axisSet.xAxis.axisLineStyle = lineStyle;
@@ -96,12 +96,12 @@
     axisSet.xAxis.minorTickLineStyle = lineStyle;
     axisSet.xAxis.labelTextStyle = textStyle;
     axisSet.xAxis.labelOffset = 3.0f;
-    axisSet.xAxis.majorIntervalLength = CPTDecimalFromFloat(2.0f);
+    axisSet.xAxis.majorIntervalLength = CPTDecimalFromFloat(10.0f);
     axisSet.xAxis.minorTicksPerInterval = 1;
     axisSet.xAxis.minorTickLength = 5.0f;
     axisSet.xAxis.majorTickLength = 7.0f;
     
-    axisSet.yAxis.title = @"Data Y";
+    axisSet.yAxis.title = @"скорость";
     axisSet.yAxis.titleTextStyle = textStyle;
     axisSet.yAxis.titleOffset = 40.0f;
     axisSet.yAxis.axisLineStyle = lineStyle;
