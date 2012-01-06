@@ -15,6 +15,7 @@ static sqlite3_stmt *deleteStmt = nil;
 static sqlite3_stmt *addStmt = nil;
 
 
+
 @implementation DatabaseActions
 
 -(id) initDataBase{
@@ -127,6 +128,47 @@ static sqlite3_stmt *addStmt = nil;
         sqlite3_reset(deleteStmt);
     
 }
+
+- (void) takeMax{
+    
+    double maxSpeed = 0;
+    const char *sql = "SELECT MAX(speed) FROM skiboard";
+    
+    sqlite3_stmt *selectstmt;
+    if(sqlite3_prepare_v2(database, sql, -1, &selectstmt, NULL) == SQLITE_OK) {
+        if(sqlite3_step(selectstmt) == SQLITE_ROW){
+        maxSpeed = sqlite3_column_double(selectstmt, 0);    
+        }
+        NSLog(@"max = %f", maxSpeed);
+    }
+}
+
+- (void) takeAvg{
+    double sumSpeed = 0;
+    NSInteger rows = 0;
+    const char *sql = "SELECT SUM(speed) FROM skiboard";
+    sqlite3_stmt *selectstmt;
+    if(sqlite3_prepare_v2(database, sql, -1, &selectstmt, NULL) == SQLITE_OK) {
+        if(sqlite3_step(selectstmt) == SQLITE_ROW){
+            sumSpeed = sqlite3_column_double(selectstmt, 0);    
+        }
+        NSLog(@"sum = %f", sumSpeed);
+    }
+    
+    const char *sql2 = "SELECT COUNT(speed) FROM skiboard";
+    if(sqlite3_prepare_v2(database, sql2, -1, &selectstmt, NULL) == SQLITE_OK) {
+        if(sqlite3_step(selectstmt) == SQLITE_ROW){
+            rows = sqlite3_column_int(selectstmt, 0);    
+        }
+        NSLog(@"rows = %i", rows);
+    }
+    double avgSpeed = sumSpeed/rows;
+    NSLog(@"sum = %f", avgSpeed);
+    
+}
+
+//SELECT MAX(salary) as "Highest salary"
+//FROM employees;
 
 
 -(NSArray*) readDatabase {

@@ -35,5 +35,6 @@
 - (void) clearDatabase;
 - (NSArray*) readDatabase;
 + (void) finalizeStatements;
-
+- (void) takeMax;
+- (void) takeAvg;
 @end
