@@ -33,6 +33,9 @@
 }
 
 
+- (NSArray*) readDatabase{
+    return [databaseActions readDatabase];
+}
 
 
 -(bool)getMotionState{

@@ -203,7 +203,7 @@ static sqlite3_stmt *addStmt = nil;
 		sqlite3_finalize(compiledStatement);
         
 //	}
-	sqlite3_close(database);
+//	sqlite3_close(database);
     return points;
     
 }

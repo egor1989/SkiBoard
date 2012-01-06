@@ -10,14 +10,13 @@
 
 #import "CorePlot-CocoaTouch.h"
 #import "TUTSimpleScatterPlot.h"
+#import "AppDelegate.h"
 
-#import "DatabaseActions.h"
+#define myAppDelegate (AppDelegate*) [[UIApplication sharedApplication] delegate]
 
 @interface SecondViewController : UIViewController{
     IBOutlet CPTGraphHostingView *_graphHostingView;
     TUTSimpleScatterPlot *_scatterPlot;
-    
-    DatabaseActions *databaseAction;
 }
 
 @property (nonatomic, retain) TUTSimpleScatterPlot *scatterPlot;

@@ -9,11 +9,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "SkiBoard/SecondViewController.m"
-         timestampString = "347571316.629166"
+         timestampString = "347577664.065899"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "44"
-         endingLineNumber = "44"
+         startingLineNumber = "43"
+         endingLineNumber = "43"
          landmarkName = "-viewWillAppear:"
          landmarkType = "5">
       </FileBreakpoint>

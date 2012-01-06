@@ -24,7 +24,6 @@
 {
     [super viewDidLoad];
     
-    databaseAction = [[DatabaseActions alloc] initDataBase];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -39,7 +38,7 @@
 {
     [super viewWillAppear:animated];
     NSMutableArray *data = [NSMutableArray array];
-    NSArray *db=[databaseAction readDatabase];
+    NSArray *db=[myAppDelegate readDatabase];
     for (int i=0;i< [db count];i++){
         [data addObject:[NSValue valueWithCGPoint:CGPointMake(i, [[ db objectAtIndex:i] getSpeed]+3)]];
     }
