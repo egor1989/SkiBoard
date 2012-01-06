@@ -17,6 +17,7 @@
     CLLocation *userLocation;
     
     //data for table
+    NSInteger pk;
     NSInteger userID;
     NSString *userName;
     NSDate *time;
@@ -30,5 +31,6 @@
 -(id) initDataBase;
 -(void) checkAndCreateDatabase;
 -(void) addRecord;
++ (void) finalizeStatements;
 
 @end

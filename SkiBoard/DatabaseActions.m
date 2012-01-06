@@ -27,6 +27,8 @@ static sqlite3_stmt *addStmt = nil;
 	NSString *documentsDir = [documentPaths objectAtIndex:0];
 	databasePath = [documentsDir stringByAppendingPathComponent:databaseName];
     [self checkAndCreateDatabase];
+    if (sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK) NSLog(@"open");
+    else NSLog(@"error! base not open");
     
     NSLog(@"download");
     return self;
@@ -87,13 +89,46 @@ static sqlite3_stmt *addStmt = nil;
     time = [dateFormatter stringFromDate:[userLocation timestamp]];
     [dateFormatter release];
     
- */   
-
+ */  
+   	if(addStmt == nil) {
+        
+		const char *sql = "INSERT INTO skiboard(id, name, time, speed, alt, lat, lon) VALUES(?, ?, ?, ?, ?, ?, ?)";
+		if(sqlite3_prepare_v2(database, sql, -1, &addStmt, NULL) != SQLITE_OK)
+            
+			NSAssert1(0, @"Error while creating add statement. '%s'", sqlite3_errmsg(database));
+	}
+	
+    sqlite3_bind_int(addStmt, 1, userID);
+    sqlite3_bind_text(addStmt, 2, [userName UTF8String], -1, SQLITE_TRANSIENT);
+	//sqlite3_bind_text(addStmt, 1, [coffeeName UTF8String], -1, SQLITE_TRANSIENT);
+	//sqlite3_bind_double(addStmt, 2, [price doubleValue]);
+    //sqlite3_bind_double(statement, index, [dateObject timeIntervalSince1970]);
+    sqlite3_bind_double(addStmt, 3, [time timeIntervalSince1970]);
+    sqlite3_bind_double(addStmt, 4, speed);
+    sqlite3_bind_double(addStmt, 5, altitude);
+    sqlite3_bind_double(addStmt, 6, latitude);
+    sqlite3_bind_double(addStmt, 7, longitude);
     
-   
+	if(SQLITE_DONE != sqlite3_step(addStmt))
+		NSAssert1(0, @"Error while inserting data. '%s'", sqlite3_errmsg(database));
+	else {
+		//SQLite provides a method to get the last primary key inserted by using sqlite3_last_insert_rowid
+		pk = sqlite3_last_insert_rowid(database);
+        NSLog(@"%i",pk);
+        NSLog(@"add record!");
+	}
+	//Reset the add statement.
+	sqlite3_reset(addStmt); 
     
     NSLog(@"test"); 
            
+}
+
++ (void) finalizeStatements {
+	
+	if(database) sqlite3_close(database);
+	if(deleteStmt) sqlite3_finalize(deleteStmt);
+	if(addStmt) sqlite3_finalize(addStmt);
 }
 
 
