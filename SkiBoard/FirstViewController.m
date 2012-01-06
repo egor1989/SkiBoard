@@ -67,6 +67,12 @@
     [databaseAction clearDatabase];
 }
 
+- (IBAction) takeMax{
+    
+    [databaseAction takeMax];
+    
+}
+
 - (void)viewDidUnload
 {
     NSLog(@"viewDidUnload");

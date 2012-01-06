@@ -38,6 +38,7 @@
 - (void)showGPS;
 - (IBAction) clearDataBase;
 - (IBAction) addRecord;
+- (IBAction) takeMax;
 
 
     

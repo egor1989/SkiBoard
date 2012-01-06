@@ -33,5 +33,5 @@
 - (void) addRecord;
 - (void) clearDatabase;
 + (void) finalizeStatements;
-
+- (void) takeMax;
 @end

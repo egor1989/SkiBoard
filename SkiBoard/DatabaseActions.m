@@ -15,6 +15,7 @@ static sqlite3_stmt *deleteStmt = nil;
 static sqlite3_stmt *addStmt = nil;
 
 
+
 @implementation DatabaseActions
 
 
@@ -133,6 +134,49 @@ static sqlite3_stmt *addStmt = nil;
         sqlite3_reset(deleteStmt);
     
 }
+
+- (void) takeMax{
+    NSInteger maxSpeed = 0;
+    const char *sql = "SELECT MAX(speed) FROM skiboard";
+    
+    sqlite3_stmt *selectstmt;
+    if(sqlite3_prepare_v2(database, sql, -1, &selectstmt, NULL) == SQLITE_OK) {
+        if(sqlite3_step(selectstmt) == SQLITE_ROW){
+        maxSpeed = sqlite3_column_double(selectstmt, 0);    
+        }
+        NSLog(@"max = %i", maxSpeed);
+    }
+    const char *sql2 = "SELECT MAX(speed) as ? FROM skiboard";
+    maxSpeed = sqlite3_column_int(selectstmt, 4);
+    if(sqlite3_prepare_v2(database, sql2, -1, &selectstmt, NULL) == SQLITE_OK) {
+        maxSpeed = sqlite3_column_int(selectstmt, 4);
+        NSLog(@"max = %i", maxSpeed);
+    }
+    
+   // const char *sql3 = "SELECT MAX(speed) as maxSpeed FROM skiboard";
+    
+    /*
+     const char *sql = "select coffeeID, coffeeName from coffee";
+     sqlite3_stmt *selectstmt;
+     if(sqlite3_prepare_v2(database, sql, -1, &selectstmt, NULL) == SQLITE_OK) {
+     
+     while(sqlite3_step(selectstmt) == SQLITE_ROW) {
+     
+     NSInteger primaryKey = sqlite3_column_int(selectstmt, 0);
+     Coffee *coffeeObj = [[Coffee alloc] initWithPrimaryKey:primaryKey];
+     coffeeObj.coffeeName = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 1)];
+     
+     coffeeObj.isDirty = NO;
+     
+     [appDelegate.coffeeArray addObject:coffeeObj];
+     [coffeeObj release];
+     }
+
+     */
+    
+}
+//SELECT MAX(salary) as "Highest salary"
+//FROM employees;
 
 
 
