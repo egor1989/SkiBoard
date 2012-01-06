@@ -63,6 +63,10 @@
     
 }
 
+- (IBAction) clearDataBase{
+    [databaseAction clearDatabase];
+}
+
 - (void)viewDidUnload
 {
     NSLog(@"viewDidUnload");

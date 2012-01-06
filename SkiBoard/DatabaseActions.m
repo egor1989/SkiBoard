@@ -119,7 +119,7 @@ static sqlite3_stmt *addStmt = nil;
 - (void) clearDatabase{
     
         if(deleteStmt == nil) {
-            const char *sql = "delete from Coffee where coffeeID = ?";
+            const char *sql = "delete from skiboard where id = 1";
             if(sqlite3_prepare_v2(database, sql, -1, &deleteStmt, NULL) != SQLITE_OK)
                 NSAssert1(0, @"Error while creating delete statement. '%s'", sqlite3_errmsg(database));
         }
@@ -131,8 +131,6 @@ static sqlite3_stmt *addStmt = nil;
             NSAssert1(0, @"Error while deleting. '%s'", sqlite3_errmsg(database));
         
         sqlite3_reset(deleteStmt);
-    
-    
     
 }
 
