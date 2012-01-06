@@ -70,6 +70,7 @@
 - (IBAction) takeMax{
     
     [databaseAction takeMax];
+    [databaseAction takeAvg];
     
 }
 

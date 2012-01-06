@@ -34,4 +34,5 @@
 - (void) clearDatabase;
 + (void) finalizeStatements;
 - (void) takeMax;
+- (void) takeAvg;
 @end
