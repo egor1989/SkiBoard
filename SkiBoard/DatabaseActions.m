@@ -81,15 +81,7 @@ static sqlite3_stmt *addStmt = nil;
     altitude = [[NSString stringWithFormat:@"%.6f", [userLocation altitude]] doubleValue];
     
     NSLog(@"speed = %f", speed);
-    
-    //date to string
- /*   NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-    
-    time = [dateFormatter stringFromDate:[userLocation timestamp]];
-    [dateFormatter release];
-    
- */  
+     
    	if(addStmt == nil) {
         
 		const char *sql = "INSERT INTO skiboard(id, name, time, speed, alt, lat, lon) VALUES(?, ?, ?, ?, ?, ?, ?)";
@@ -123,6 +115,28 @@ static sqlite3_stmt *addStmt = nil;
     NSLog(@"test"); 
            
 }
+
+- (void) clearDatabase{
+    
+        if(deleteStmt == nil) {
+            const char *sql = "delete from Coffee where coffeeID = ?";
+            if(sqlite3_prepare_v2(database, sql, -1, &deleteStmt, NULL) != SQLITE_OK)
+                NSAssert1(0, @"Error while creating delete statement. '%s'", sqlite3_errmsg(database));
+        }
+        
+        //When binding parameters, index starts from 1 and not zero.
+       // sqlite3_bind_int(deleteStmt, 1, coffeeID);
+        
+        if (SQLITE_DONE != sqlite3_step(deleteStmt)) 
+            NSAssert1(0, @"Error while deleting. '%s'", sqlite3_errmsg(database));
+        
+        sqlite3_reset(deleteStmt);
+    
+    
+    
+}
+
+
 
 + (void) finalizeStatements {
 	

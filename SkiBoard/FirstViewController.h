@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
-#import "AppDelegate.h"
+#import "DatabaseActions.h"
+
 
 
 @interface FirstViewController : UIViewController{
@@ -25,7 +26,7 @@
     IBOutlet UILabel *lon;
     IBOutlet UILabel *lat;
     IBOutlet UILabel *maxSpeed;
-    
+    DatabaseActions *databaseAction;
     
     CLLocation *userLocation;
     

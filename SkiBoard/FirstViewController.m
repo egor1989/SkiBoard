@@ -37,6 +37,7 @@
      selector: @selector(showGPS)
      name: @"locateNotification"
      object: nil];
+     databaseAction = [[DatabaseActions alloc] initDataBase];
     
 	// Do any additional setup after loading the view, typically from a nib.
 }
@@ -57,8 +58,8 @@
 }
 
 - (IBAction) addRecord{
-    DatabaseActions *add = [[DatabaseActions alloc] init];
-    [add addRecord];
+    
+    [databaseAction addRecord];
     
 }
 

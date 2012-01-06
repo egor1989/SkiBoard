@@ -28,9 +28,10 @@
     
 }
 
--(id) initDataBase;
--(void) checkAndCreateDatabase;
--(void) addRecord;
+- (id) initDataBase;
+- (void) checkAndCreateDatabase;
+- (void) addRecord;
+- (void) clearDatabase;
 + (void) finalizeStatements;
 
 @end
