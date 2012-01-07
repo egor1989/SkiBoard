@@ -37,6 +37,7 @@
 - (void)stopGPSDetect;
 - (bool)getGPSState;
 - (bool)getMotionState;
+- (NSArray*) readDatabase;
 
 @property (strong, nonatomic) UIWindow *window;
 

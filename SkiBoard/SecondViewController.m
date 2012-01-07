@@ -23,6 +23,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -36,22 +37,17 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
     NSMutableArray *data = [NSMutableArray array];
-    [data addObject:[NSValue valueWithCGPoint:CGPointMake(-10, 100)]];
-    [data addObject:[NSValue valueWithCGPoint:CGPointMake(-8, 50)]];
-    [data addObject:[NSValue valueWithCGPoint:CGPointMake(-6, 20)]];
-    [data addObject:[NSValue valueWithCGPoint:CGPointMake(-4, 10)]];
-    [data addObject:[NSValue valueWithCGPoint:CGPointMake(-2, 5)]];
-    [data addObject:[NSValue valueWithCGPoint:CGPointMake(0, 0)]];
-    [data addObject:[NSValue valueWithCGPoint:CGPointMake(2, 4)]];
-    [data addObject:[NSValue valueWithCGPoint:CGPointMake(4, 16)]];
-    [data addObject:[NSValue valueWithCGPoint:CGPointMake(6, 36)]];
-    [data addObject:[NSValue valueWithCGPoint:CGPointMake(8, 64)]];
-    [data addObject:[NSValue valueWithCGPoint:CGPointMake(10, 100)]];
+    NSArray *db=[myAppDelegate readDatabase];
+    for (int i=0;i< [db count];i++){
+        [data addObject:[NSValue valueWithCGPoint:CGPointMake(i, [[ db objectAtIndex:i] getSpeed]+3)]];
+    }
     
     self.scatterPlot = [[TUTSimpleScatterPlot alloc] initWithHostingView:_graphHostingView andData:data];
     [self.scatterPlot initialisePlot];
+    [db release];
+    
+   
 }
 
 - (void)viewDidAppear:(BOOL)animated

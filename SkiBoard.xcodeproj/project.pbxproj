@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27653BE814B761F7002E61AC /* Info.m in Sources */ = {isa = PBXBuildFile; fileRef = 27653BE714B761F7002E61AC /* Info.m */; };
 		27CC4A9214B5FF4400058115 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CC4A9114B5FF4400058115 /* libCorePlot-CocoaTouch.a */; };
 		27CC4A9514B602AA00058115 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CC4A9414B602AA00058115 /* QuartzCore.framework */; };
 		27CC4A9814B6040600058115 /* TUTSimpleScatterPlot.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CC4A9714B6040600058115 /* TUTSimpleScatterPlot.m */; };
@@ -31,6 +32,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		27653BE614B761F7002E61AC /* Info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Info.h; sourceTree = "<group>"; };
+		27653BE714B761F7002E61AC /* Info.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Info.m; sourceTree = "<group>"; };
 		27CC4A4214B5FF4400058115 /* _CPTConstraintsFixed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _CPTConstraintsFixed.h; sourceTree = "<group>"; };
 		27CC4A4314B5FF4400058115 /* _CPTConstraintsRelative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _CPTConstraintsRelative.h; sourceTree = "<group>"; };
 		27CC4A4414B5FF4400058115 /* _CPTDarkGradientTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _CPTDarkGradientTheme.h; sourceTree = "<group>"; };
@@ -334,6 +337,8 @@
 				53CAB08514B34E54003FE7E0 /* skiboard.sqlite */,
 				5391D41214B60FBE0085D1A8 /* DatabaseActions.h */,
 				5391D41314B60FBE0085D1A8 /* DatabaseActions.m */,
+				27653BE614B761F7002E61AC /* Info.h */,
+				27653BE714B761F7002E61AC /* Info.m */,
 			);
 			name = DataBase;
 			sourceTree = "<group>";
@@ -411,7 +416,7 @@
 				538EBD6F14ACBC140017B6F3 /* SecondViewController.m in Sources */,
 				5391D41414B60FBE0085D1A8 /* DatabaseActions.m in Sources */,
 				27CC4A9814B6040600058115 /* TUTSimpleScatterPlot.m in Sources */,
- 0e6f023fe794d7bf60e72b8a9a7a7319ea5b44c3
+				27653BE814B761F7002E61AC /* Info.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

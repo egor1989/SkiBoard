@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
+#import "Info.h"
 //#import "AppDelegate.h"
 
 @interface DatabaseActions : NSObject{
@@ -32,6 +33,7 @@
 - (void) checkAndCreateDatabase;
 - (void) addRecord;
 - (void) clearDatabase;
+- (NSArray*) readDatabase;
 + (void) finalizeStatements;
 - (void) takeMaxSpeed;
 - (void) takeAvgSpeed;
