@@ -18,7 +18,6 @@ static sqlite3_stmt *addStmt = nil;
 
 @implementation DatabaseActions
 
-
 -(id) initDataBase{
     [super init];
     //Database
@@ -65,9 +64,6 @@ static sqlite3_stmt *addStmt = nil;
 }
 
 -(void) addRecord{
-    
-
-           
     userLocation = [myAppDelegate getLastLocation];
     
     //visualize
@@ -87,7 +83,6 @@ static sqlite3_stmt *addStmt = nil;
         
 		const char *sql = "INSERT INTO skiboard(id, name, time, speed, alt, lat, lon) VALUES(?, ?, ?, ?, ?, ?, ?)";
 		if(sqlite3_prepare_v2(database, sql, -1, &addStmt, NULL) != SQLITE_OK)
-            
 			NSAssert1(0, @"Error while creating add statement. '%s'", sqlite3_errmsg(database));
 	}
 	
@@ -118,7 +113,6 @@ static sqlite3_stmt *addStmt = nil;
 }
 
 - (void) clearDatabase{
-    
         if(deleteStmt == nil) {
             const char *sql = "delete from skiboard where id = 1";
             if(sqlite3_prepare_v2(database, sql, -1, &deleteStmt, NULL) != SQLITE_OK)
@@ -135,7 +129,7 @@ static sqlite3_stmt *addStmt = nil;
     
 }
 
-- (void) takeMax{
+- (void) takeMaxSpeed{
     
     double maxSpeed = 0;
     const char *sql = "SELECT MAX(speed) FROM skiboard";
@@ -149,7 +143,7 @@ static sqlite3_stmt *addStmt = nil;
     }
 }
 
-- (void) takeAvg{
+- (void) takeAvgSpeed{
     double sumSpeed = 0;
     NSInteger rows = 0;
     const char *sql = "SELECT SUM(speed) FROM skiboard";
@@ -169,12 +163,56 @@ static sqlite3_stmt *addStmt = nil;
         NSLog(@"rows = %i", rows);
     }
     double avgSpeed = sumSpeed/rows;
-    NSLog(@"sum = %f", avgSpeed);
+    NSLog(@"avg = %f", avgSpeed);
+    
+}
+- (void) takeMaxAlt{
+    
     
 }
 
 //SELECT MAX(salary) as "Highest salary"
 //FROM employees;
+
+
+-(NSArray*) readDatabase {
+    
+	// Init the animals Array
+	NSMutableArray *points = [[NSMutableArray alloc] init];
+    
+	// Open the database from the users filessytem
+//	if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK) {
+		// Setup the SQL Statement and compile it for faster access
+		const char *sqlStatement = "select * from skiboard";
+		sqlite3_stmt *compiledStatement;
+		if(sqlite3_prepare_v2(database, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK) {
+			// Loop through the results and add them to the feeds array
+			while(sqlite3_step(compiledStatement) == SQLITE_ROW) {
+				// Read the data from the result row
+				// Create a new animal object with the data from the database
+				Info *point = [[Info alloc] initWithUserID: sqlite3_column_double(compiledStatement, 1)
+                                                  UserName:[NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 2)]
+                                                      Time: sqlite3_column_double(compiledStatement, 3)
+                                                     Speed: sqlite3_column_double(compiledStatement, 4) 
+                                                 Longitude: sqlite3_column_double(compiledStatement, 5) 
+                                                  Latitude: sqlite3_column_double(compiledStatement, 6) 
+                                                  Altitude: sqlite3_column_double(compiledStatement, 7)
+                               ];
+                
+				// Add the animal object to the animals Array
+				[points addObject:point];
+			}
+		}
+		// Release the compiled statement from memory
+		sqlite3_finalize(compiledStatement);
+        
+//	}
+//	sqlite3_close(database);
+    return points;
+    
+}
+
+
 
 
 
