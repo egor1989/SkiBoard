@@ -69,8 +69,8 @@
 
 - (IBAction) takeMax{
     
-    [databaseAction takeMax];
-    [databaseAction takeAvg];
+    [databaseAction takeMaxSpeed];
+    [databaseAction takeAvgSpeed];
     
 }
 

@@ -135,7 +135,7 @@ static sqlite3_stmt *addStmt = nil;
     
 }
 
-- (void) takeMax{
+- (void) takeMaxSpeed{
     
     double maxSpeed = 0;
     const char *sql = "SELECT MAX(speed) FROM skiboard";
@@ -149,7 +149,7 @@ static sqlite3_stmt *addStmt = nil;
     }
 }
 
-- (void) takeAvg{
+- (void) takeAvgSpeed{
     double sumSpeed = 0;
     NSInteger rows = 0;
     const char *sql = "SELECT SUM(speed) FROM skiboard";
@@ -169,14 +169,16 @@ static sqlite3_stmt *addStmt = nil;
         NSLog(@"rows = %i", rows);
     }
     double avgSpeed = sumSpeed/rows;
-    NSLog(@"sum = %f", avgSpeed);
+    NSLog(@"avg = %f", avgSpeed);
     
 }
 
-//SELECT MAX(salary) as "Highest salary"
-//FROM employees;
-
-
+- (void) takeMaxAlt{
+    
+    
+    
+    
+}
 
 + (void) finalizeStatements {
 	

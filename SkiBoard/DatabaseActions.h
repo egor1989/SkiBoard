@@ -33,6 +33,6 @@
 - (void) addRecord;
 - (void) clearDatabase;
 + (void) finalizeStatements;
-- (void) takeMax;
-- (void) takeAvg;
+- (void) takeMaxSpeed;
+- (void) takeAvgSpeed;
 @end
