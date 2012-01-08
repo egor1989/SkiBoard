@@ -25,6 +25,7 @@
 		538EBD7114ACBC140017B6F3 /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 538EBD7014ACBC140017B6F3 /* second.png */; };
 		538EBD7314ACBC140017B6F3 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 538EBD7214ACBC140017B6F3 /* second@2x.png */; };
 		5391D41414B60FBE0085D1A8 /* DatabaseActions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5391D41314B60FBE0085D1A8 /* DatabaseActions.m */; };
+		539D80FC14B9E443001BFFB2 /* stat(alpha).png in Resources */ = {isa = PBXBuildFile; fileRef = 539D80FB14B9E443001BFFB2 /* stat(alpha).png */; };
 		53CAB08314ACE899003FE7E0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53CAB08214ACE899003FE7E0 /* CoreLocation.framework */; };
 		53CAB08614B34E54003FE7E0 /* skiboard.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 53CAB08514B34E54003FE7E0 /* skiboard.sqlite */; };
 		53CAB08814B3507D003FE7E0 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53CAB08714B3507D003FE7E0 /* libsqlite3.0.dylib */; };
@@ -138,6 +139,7 @@
 		538EBD7214ACBC140017B6F3 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 		5391D41214B60FBE0085D1A8 /* DatabaseActions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseActions.h; sourceTree = "<group>"; };
 		5391D41314B60FBE0085D1A8 /* DatabaseActions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseActions.m; sourceTree = "<group>"; };
+		539D80FB14B9E443001BFFB2 /* stat(alpha).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "stat(alpha).png"; path = "Design/stat(alpha).png"; sourceTree = "<group>"; };
 		53CAB08214ACE899003FE7E0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		53CAB08514B34E54003FE7E0 /* skiboard.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = skiboard.sqlite; sourceTree = SOURCE_ROOT; };
 		53CAB08714B3507D003FE7E0 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
@@ -300,6 +302,7 @@
 		538EBD5714ACBC140017B6F3 /* SkiBoard */ = {
 			isa = PBXGroup;
 			children = (
+				539D80F914B9E416001BFFB2 /* Design */,
 				53CAB08414B34E38003FE7E0 /* DataBase */,
 				538EBD6014ACBC140017B6F3 /* AppDelegate.h */,
 				538EBD6114ACBC140017B6F3 /* AppDelegate.m */,
@@ -328,6 +331,14 @@
 				538EBD5F14ACBC140017B6F3 /* SkiBoard-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		539D80F914B9E416001BFFB2 /* Design */ = {
+			isa = PBXGroup;
+			children = (
+				539D80FB14B9E443001BFFB2 /* stat(alpha).png */,
+			);
+			name = Design;
 			sourceTree = "<group>";
 		};
 		53CAB08414B34E38003FE7E0 /* DataBase */ = {
@@ -400,6 +411,7 @@
 				538EBD7114ACBC140017B6F3 /* second.png in Resources */,
 				538EBD7314ACBC140017B6F3 /* second@2x.png in Resources */,
 				53CAB08614B34E54003FE7E0 /* skiboard.sqlite in Resources */,
+				539D80FC14B9E443001BFFB2 /* stat(alpha).png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
