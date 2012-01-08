@@ -34,11 +34,12 @@
     
     [[NSNotificationCenter defaultCenter]	
      addObserver: self
-     selector: @selector(showGPS)
+     selector: @selector(showStat)
      name: @"locateNotification"
      object: nil];
      databaseAction = [[DatabaseActions alloc] initDataBase];
-    
+    [self showTmp];
+        
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -46,14 +47,11 @@
     
 }
 
-- (void)showGPS{
-    NSLog(@"showGPS");        
-    userLocation = [myAppDelegate getLastLocation];
-    avSpeed.text = [NSString stringWithFormat:@"%.2f", [userLocation speed]];
-    alt.text = [NSString stringWithFormat:@"%.3f", [userLocation altitude]];
-    lat.text = [NSString stringWithFormat:@"%.3f", userLocation.coordinate.latitude];
-    lon.text = [NSString stringWithFormat:@"%.3f", userLocation.coordinate.longitude];
-    
+- (void)showStat{
+    NSLog(@"showStat");        
+  //  userLocation = [myAppDelegate getLastLocation];
+  //  avSpeed.text = [NSString stringWithFormat:@"%.2f", [userLocation speed]];
+       
     
 }
 
@@ -68,11 +66,19 @@
 }
 
 - (IBAction) takeMax{
-    
-    [databaseAction takeMaxSpeed];
-    [databaseAction takeAvgSpeed];
-    
+    avAlt.text = [NSString stringWithFormat:@"%.1f", [databaseAction takeAvgAlt]];
+    maxAlt.text = [NSString stringWithFormat:@"%.1f",[databaseAction takeMaxAlt]];
+    maxSpeed.text = [NSString stringWithFormat:@"%.1f",[databaseAction takeMaxSpeed]];
+    avSpeed.text = [NSString stringWithFormat:@"%.1f",[databaseAction takeAvgSpeed]];
 }
+
+- (void) showTmp{
+    avAlt.text = [NSString stringWithFormat:@"%.1f", [databaseAction takeAvgAlt]];
+    maxAlt.text = [NSString stringWithFormat:@"%.1f",[databaseAction takeMaxAlt]];
+    maxSpeed.text = [NSString stringWithFormat:@"%.1f",[databaseAction takeMaxSpeed]];
+    avSpeed.text = [NSString stringWithFormat:@"%.1f",[databaseAction takeAvgSpeed]];
+}
+
 
 - (void)viewDidUnload
 {
@@ -85,13 +91,7 @@
     distance = nil;
     [graphView release];
     graphView = nil;
-    [lat release];
-    lat = nil;
-    [lon release];
-    lon = nil;
-    [alt release];
-    alt = nil;
-  
+
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -129,10 +129,7 @@
     [avSpeed release];
     [distance release];
     [graphView release];
-    [lat release];
-    [lon release];
-    [alt release];
-       [super dealloc];
+    [super dealloc];
     
     [[NSNotificationCenter defaultCenter]	
      removeObserver: self

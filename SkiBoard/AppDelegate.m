@@ -93,7 +93,7 @@
     
     lastLoc = [[CLLocation alloc] initWithCoordinate:newLocation.coordinate altitude:newLocation.altitude horizontalAccuracy:newLocation.horizontalAccuracy verticalAccuracy:newLocation.verticalAccuracy course:newLocation.course speed:newLocation.speed timestamp:newLocation.timestamp];
     
-    // [databaseActions addRecord];
+    [databaseActions addRecord];
     [[NSNotificationCenter defaultCenter]	postNotificationName:	@"locateNotification" object:  nil];
 
     locTimer = [NSTimer scheduledTimerWithTimeInterval:locWarningTime

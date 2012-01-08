@@ -35,6 +35,8 @@
 - (void) clearDatabase;
 - (NSArray*) readDatabase;
 + (void) finalizeStatements;
-- (void) takeMaxSpeed;
-- (void) takeAvgSpeed;
+- (double) takeMaxSpeed;
+- (double) takeAvgSpeed;
+- (double) takeAvgAlt;
+- (double) takeMaxAlt;
 @end

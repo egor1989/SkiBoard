@@ -22,23 +22,28 @@
     double latitude;
     double altitude;
     
-    IBOutlet UILabel *alt;
-    IBOutlet UILabel *lon;
-    IBOutlet UILabel *lat;
-    IBOutlet UILabel *maxSpeed;
+    
+    
+    
     DatabaseActions *databaseAction;
     
     CLLocation *userLocation;
     
+    IBOutlet UILabel *maxAlt;
+    IBOutlet UILabel *avAlt;
+    IBOutlet UILabel *maxSpeed;
     IBOutlet UILabel *avSpeed;
+    IBOutlet UILabel *usefulTime;
     IBOutlet UILabel *distance;
+    IBOutlet UILabel *lines;
     IBOutlet UIView *graphView;
 }
 - (void)accelerometer;
-- (void)showGPS;
+- (void)showStat;
 - (IBAction) clearDataBase;
 - (IBAction) addRecord;
 - (IBAction) takeMax;
+- (void) showTmp;
 
 
     

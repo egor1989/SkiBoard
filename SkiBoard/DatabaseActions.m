@@ -78,6 +78,7 @@ static sqlite3_stmt *addStmt = nil;
     altitude = [[NSString stringWithFormat:@"%.6f", [userLocation altitude]] doubleValue];
     
     NSLog(@"speed = %f", speed);
+    speed = speed+1;
      
    	if(addStmt == nil) {
         
@@ -129,7 +130,7 @@ static sqlite3_stmt *addStmt = nil;
     
 }
 
-- (void) takeMaxSpeed{
+- (double) takeMaxSpeed{
     
     double maxSpeed = 0;
     const char *sql = "SELECT MAX(speed) FROM skiboard";
@@ -141,9 +142,10 @@ static sqlite3_stmt *addStmt = nil;
         }
         NSLog(@"max = %f", maxSpeed);
     }
+    return maxSpeed;
 }
 
-- (void) takeAvgSpeed{
+- (double) takeAvgSpeed{
     double sumSpeed = 0;
     NSInteger rows = 0;
     const char *sql = "SELECT SUM(speed) FROM skiboard";
@@ -164,15 +166,48 @@ static sqlite3_stmt *addStmt = nil;
     }
     double avgSpeed = sumSpeed/rows;
     NSLog(@"avg = %f", avgSpeed);
+    return avgSpeed;
     
 }
-- (void) takeMaxAlt{
+- (double) takeMaxAlt{
+    double maxAlt = 0;
+    const char *sql = "SELECT MAX(alt) FROM skiboard";
     
-    
+    sqlite3_stmt *selectstmt;
+    if(sqlite3_prepare_v2(database, sql, -1, &selectstmt, NULL) == SQLITE_OK) {
+        if(sqlite3_step(selectstmt) == SQLITE_ROW){
+            maxAlt = sqlite3_column_double(selectstmt, 0);    
+        }
+        NSLog(@"max = %f", maxAlt);
+    }
+    return maxAlt;
 }
 
-//SELECT MAX(salary) as "Highest salary"
-//FROM employees;
+- (double) takeAvgAlt{
+    
+    double sumAlt = 0;
+    NSInteger rows = 0;
+    const char *sql = "SELECT SUM(alt) FROM skiboard";
+    sqlite3_stmt *selectstmt;
+    if(sqlite3_prepare_v2(database, sql, -1, &selectstmt, NULL) == SQLITE_OK) {
+        if(sqlite3_step(selectstmt) == SQLITE_ROW){
+            sumAlt = sqlite3_column_double(selectstmt, 0);    
+        }
+        NSLog(@"sum = %f", sumAlt);
+    }
+    
+    const char *sql2 = "SELECT COUNT(alt) FROM skiboard";
+    if(sqlite3_prepare_v2(database, sql2, -1, &selectstmt, NULL) == SQLITE_OK) {
+        if(sqlite3_step(selectstmt) == SQLITE_ROW){
+            rows = sqlite3_column_int(selectstmt, 0);    
+        }
+        NSLog(@"rows = %i", rows);
+    }
+    double avgAlt = sumAlt/rows;
+    NSLog(@"avg = %f", avgAlt);
+    return avgAlt;
+}
+
 
 
 -(NSArray*) readDatabase {
