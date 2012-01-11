@@ -28,6 +28,7 @@
     NSUserDefaults *userDefaults;
     NSInteger countDown;
     NSInteger countUp;
+    NSInteger countLines;
     double lastAlt;
     
     DatabaseActions *databaseActions;
@@ -47,7 +48,9 @@
 - (BOOL) isDownhill: (double) tmpAltitude;
 - (BOOL) isUphill: (double) tmpAltitude;
 - (NSArray*) readDatabase;
+- (void) addHoledown;
 
 @property (strong, nonatomic) UIWindow *window;
+
 
 @end

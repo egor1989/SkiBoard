@@ -32,12 +32,20 @@
      name: @"accelNotification"
      object: nil];
     
-    [[NSNotificationCenter defaultCenter]	
+  /*  [[NSNotificationCenter defaultCenter]	
      addObserver: self
      selector: @selector(showStat)
      name: @"locateNotification"
+     object: nil]; */
+    
+    [[NSNotificationCenter defaultCenter]	
+     addObserver: self
+     selector: @selector(showStat)
+     name: @"addCountLines"
      object: nil];
      databaseAction = [[DatabaseActions alloc] initDataBase];
+    
+    countLines = 0; 
     [self showTmp];
     
     // Do any additional setup after loading the view, typically from a nib.
@@ -48,7 +56,9 @@
 }
 
 - (void)showStat{
-    NSLog(@"showStat");        
+    NSLog(@"showStat"); 
+    countLines++;
+    lines.text=[NSString stringWithFormat:@"%i", countLines];
   //  userLocation = [myAppDelegate getLastLocation];
   //  avSpeed.text = [NSString stringWithFormat:@"%.2f", [userLocation speed]];
        
@@ -96,6 +106,7 @@
 }
 
 - (void) showTmp{
+    lines.text=[NSString stringWithFormat:@"%i", countLines];
     avAlt.text = [NSString stringWithFormat:@"%.1f", [databaseAction takeAvgAlt]];
     maxAlt.text = [NSString stringWithFormat:@"%.1f",[databaseAction takeMaxAlt]];
     maxSpeed.text = [NSString stringWithFormat:@"%.1f",[databaseAction takeMaxSpeed]];

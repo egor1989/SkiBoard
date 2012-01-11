@@ -22,6 +22,8 @@
     double latitude;
     double altitude;
     
+    NSInteger countLines;
+    
     
     
     

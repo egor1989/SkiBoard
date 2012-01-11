@@ -12,6 +12,9 @@
 
 @synthesize window = _window;
 
+#define NEWDOWNHILL 10
+#define BORDER 2
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
@@ -103,17 +106,22 @@
     lastLoc = [[CLLocation alloc] initWithCoordinate:newLocation.coordinate altitude:newLocation.altitude horizontalAccuracy:newLocation.horizontalAccuracy verticalAccuracy:newLocation.verticalAccuracy course:newLocation.course speed:newLocation.speed timestamp:newLocation.timestamp];
     
     NSLog(@"countDown = %i, countUp = %i", countDown, countUp);
-    if (countDown<2) {
+    if (countDown<BORDER) {
        record=[self isDownhill:[[NSString stringWithFormat:@"%.2f", [lastLoc altitude]] doubleValue]];  
     }
    
-    if (countDown>3) {
+    if (countDown>BORDER+1) {
         record=[self isUphill:[[NSString stringWithFormat:@"%.2f", [lastLoc altitude]] doubleValue]];
+    }
+    
+    if (countDown>NEWDOWNHILL){
+        [[NSNotificationCenter defaultCenter]	postNotificationName:	@"addCountLines" object:  nil];
     }
     
     if (record) {
         [databaseActions addRecord];
     }
+
     
     [[NSNotificationCenter defaultCenter]	postNotificationName:	@"locateNotification" object:  nil];
 
@@ -124,6 +132,9 @@
                                                repeats:YES];
     
 }
+
+
+
 - (BOOL) isDownhill: (double) tmpAltitude{
     
     BOOL result = NO;
@@ -140,7 +151,7 @@
         else countDown=1;
 
     
-    if(countDown>2) {
+    if(countDown>BORDER) {
         result=YES;
         NSLog(@"!!!Downhill!!!");
     }
@@ -165,7 +176,7 @@
     }
         else countUp = 1;
   
-    if(countUp>2) {
+    if(countUp>BORDER) {
         result=NO;
         countDown = 0;
         NSLog(@"!!!Uphill!!!");
