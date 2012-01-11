@@ -92,6 +92,7 @@
         [myAppDelegate stopGPSDetect];
         
         [trackButton setTitle:@"Start" forState:UIControlStateNormal];
+        [self timer: @"end"];
     }
     else {
         NSLog(@"%@", trackButton.titleLabel.text);
@@ -100,6 +101,7 @@
         [myAppDelegate startGPSDetect];
         
         [trackButton setTitle:@"Stop" forState:UIControlStateNormal];
+        [self timer:@"start"];
     }
     
     NSLog(@"change");
@@ -111,6 +113,25 @@
     maxAlt.text = [NSString stringWithFormat:@"%.1f",[databaseAction takeMaxAlt]];
     maxSpeed.text = [NSString stringWithFormat:@"%.1f",[databaseAction takeMaxSpeed]];
     avSpeed.text = [NSString stringWithFormat:@"%.1f",[databaseAction takeAvgSpeed]];
+}
+
+- (void) timer: (NSString *)action{
+    userLocation = [myAppDelegate getLastLocation];
+    double result;
+    if ([action isEqualToString:@"start"]) {
+        
+        startTime = [userLocation.timestamp timeIntervalSince1970];
+        NSLog(@"start-time = %.5f", startTime);
+
+    }
+    if ([action isEqualToString:@"end"]) {
+        
+         NSLog(@"tmp-time = %.5f", [userLocation.timestamp timeIntervalSince1970]);
+        result = [userLocation.timestamp timeIntervalSince1970] - startTime;
+        NSLog(@"time = %.5f", result);
+    }
+    
+    
 }
 
 

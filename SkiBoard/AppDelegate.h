@@ -48,7 +48,7 @@
 - (BOOL) isDownhill: (double) tmpAltitude;
 - (BOOL) isUphill: (double) tmpAltitude;
 - (NSArray*) readDatabase;
-- (void) addHoledown;
+
 
 @property (strong, nonatomic) UIWindow *window;
 

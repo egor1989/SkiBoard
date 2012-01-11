@@ -24,6 +24,8 @@
     
     NSInteger countLines;
     
+    double startTime;
+    
     
     
     
@@ -48,7 +50,7 @@
 - (IBAction) takeMax;
 - (IBAction) startTracking;
 - (void) showTmp;
-
+- (void) timer: (NSString *)action;
 
     
 
