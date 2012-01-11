@@ -39,8 +39,8 @@
      object: nil];
      databaseAction = [[DatabaseActions alloc] initDataBase];
     [self showTmp];
-        
-	// Do any additional setup after loading the view, typically from a nib.
+    
+    // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)accelerometer{
@@ -70,6 +70,29 @@
     maxAlt.text = [NSString stringWithFormat:@"%.1f",[databaseAction takeMaxAlt]];
     maxSpeed.text = [NSString stringWithFormat:@"%.1f",[databaseAction takeMaxSpeed]];
     avSpeed.text = [NSString stringWithFormat:@"%.1f",[databaseAction takeAvgSpeed]];
+}
+
+- (IBAction) startTracking{
+    NSString *title = trackButton.titleLabel.text;
+    NSLog(@"title= %@", title);
+    if ([title isEqualToString:@"Stop"]){
+        NSLog(@"%@", trackButton.titleLabel.text);
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setBool:NO forKey:@"tracking"];
+        [myAppDelegate stopGPSDetect];
+        
+        [trackButton setTitle:@"Start" forState:UIControlStateNormal];
+    }
+    else {
+        NSLog(@"%@", trackButton.titleLabel.text);
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setBool:YES forKey:@"tracking"];
+        [myAppDelegate startGPSDetect];
+        
+        [trackButton setTitle:@"Stop" forState:UIControlStateNormal];
+    }
+    
+    NSLog(@"change");
 }
 
 - (void) showTmp{

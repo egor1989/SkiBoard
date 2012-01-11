@@ -22,6 +22,13 @@
     CLLocationManager *locationManager;
     CLLocation *lastLoc;
     NSTimer *locTimer;
+    BOOL tracking;
+    BOOL downhill;
+    BOOL record;
+    NSUserDefaults *userDefaults;
+    NSInteger countDown;
+    NSInteger countUp;
+    double lastAlt;
     
     DatabaseActions *databaseActions;
     
@@ -37,6 +44,8 @@
 - (void)stopGPSDetect;
 - (bool)getGPSState;
 - (bool)getMotionState;
+- (BOOL) isDownhill: (double) tmpAltitude;
+- (BOOL) isUphill: (double) tmpAltitude;
 - (NSArray*) readDatabase;
 
 @property (strong, nonatomic) UIWindow *window;

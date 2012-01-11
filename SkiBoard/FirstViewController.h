@@ -37,12 +37,14 @@
     IBOutlet UILabel *distance;
     IBOutlet UILabel *lines;
     IBOutlet UIView *graphView;
+    IBOutlet UIButton *trackButton;
 }
 - (void)accelerometer;
 - (void)showStat;
 - (IBAction) clearDataBase;
 - (IBAction) addRecord;
 - (IBAction) takeMax;
+- (IBAction) startTracking;
 - (void) showTmp;
 
 

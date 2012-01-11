@@ -89,9 +89,6 @@ static sqlite3_stmt *addStmt = nil;
 	
     sqlite3_bind_int(addStmt, 1, userID);
     sqlite3_bind_text(addStmt, 2, [userName UTF8String], -1, SQLITE_TRANSIENT);
-	//sqlite3_bind_text(addStmt, 1, [coffeeName UTF8String], -1, SQLITE_TRANSIENT);
-	//sqlite3_bind_double(addStmt, 2, [price doubleValue]);
-    //sqlite3_bind_double(statement, index, [dateObject timeIntervalSince1970]);
     sqlite3_bind_double(addStmt, 3, [time timeIntervalSince1970]);
     sqlite3_bind_double(addStmt, 4, speed);
     sqlite3_bind_double(addStmt, 5, altitude);

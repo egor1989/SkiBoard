@@ -14,6 +14,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setBool:NO forKey:@"tracking"];
+    
     motionState=NO;
     motionManager = [[CMMotionManager alloc] init];
     motionManager.accelerometerUpdateInterval = 1.0 / accelUpdateFrequency;
@@ -22,11 +26,14 @@
     locationManager=[[CLLocationManager alloc] init];
     locationManager.delegate=self;
     locationManager.desiredAccuracy=kCLLocationAccuracyNearestTenMeters;
-    [self startGPSDetect];
+    //[self startGPSDetect];
     
     lastLoc = [[CLLocation alloc] init];
    
     databaseActions = [[DatabaseActions alloc] initDataBase];
+    countDown = 0;
+    countUp = 0;
+    record = NO;
         
     // Override point for customization after application launch.
     return YES;
@@ -87,13 +94,27 @@
         locTimer=nil;
     }
     
+    tracking = [userDefaults boolForKey:@"tracking"];
+   // NSLog(@"tracking = %@", tracking);
   //  NSLog(@"old lat= %@, old long=%@, new lat = %@, new lon = %@", oldLocation.coordinate.latitude, oldLocation.coordinate.longitude, newLocation.coordinate.latitude, newLocation.coordinate.longitude);
     
    
     
     lastLoc = [[CLLocation alloc] initWithCoordinate:newLocation.coordinate altitude:newLocation.altitude horizontalAccuracy:newLocation.horizontalAccuracy verticalAccuracy:newLocation.verticalAccuracy course:newLocation.course speed:newLocation.speed timestamp:newLocation.timestamp];
     
-    [databaseActions addRecord];
+    NSLog(@"countDown = %i, countUp = %i", countDown, countUp);
+    if (countDown<2) {
+       record=[self isDownhill:[[NSString stringWithFormat:@"%.2f", [lastLoc altitude]] doubleValue]];  
+    }
+   
+    if (countDown>3) {
+        record=[self isUphill:[[NSString stringWithFormat:@"%.2f", [lastLoc altitude]] doubleValue]];
+    }
+    
+    if (record) {
+        [databaseActions addRecord];
+    }
+    
     [[NSNotificationCenter defaultCenter]	postNotificationName:	@"locateNotification" object:  nil];
 
     locTimer = [NSTimer scheduledTimerWithTimeInterval:locWarningTime
@@ -103,6 +124,58 @@
                                                repeats:YES];
     
 }
+- (BOOL) isDownhill: (double) tmpAltitude{
+    
+    BOOL result = NO;
+    NSLog(@"altitude = %.2f", tmpAltitude);
+    
+    if (countDown == 0) {
+        lastAlt = tmpAltitude;
+        countDown++;
+    }
+    else if (lastAlt > tmpAltitude) {
+        NSLog(@"%.2f > %.2f", lastAlt, tmpAltitude);    
+        countDown++;
+    }
+        else countDown=1;
+
+    
+    if(countDown>2) {
+        result=YES;
+        NSLog(@"!!!Downhill!!!");
+    }
+    NSLog(@"COUNTDOWN=%i",countDown);
+    lastAlt = tmpAltitude;
+    return result;
+}
+
+- (BOOL) isUphill: (double) tmpAltitude{
+    BOOL result = YES;
+    NSLog(@"altitude = %.2f", tmpAltitude);
+    
+    if (countUp == 0) {
+        lastAlt = tmpAltitude;
+        countUp++;
+    }
+    
+    
+    else if (lastAlt<tmpAltitude) {
+        NSLog(@"%.2f < %.2f", lastAlt, tmpAltitude); 
+        countUp++;
+    }
+        else countUp = 1;
+  
+    if(countUp>2) {
+        result=NO;
+        countDown = 0;
+        NSLog(@"!!!Uphill!!!");
+    }
+    
+    lastAlt = tmpAltitude;
+    NSLog(@"COUNTUP=%i",countUp);
+    return result; 
+}
+
 
 -(void)warningButton{
     [[NSNotificationCenter defaultCenter]	postNotificationName:	@"locationWarning" object:  nil];
