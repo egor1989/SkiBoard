@@ -16,7 +16,7 @@
     
     NSInteger userID;
     NSString *userName;
-    NSData *time;
+   
     double speed;
     double longitude;
     double latitude;
@@ -24,7 +24,11 @@
     
     NSInteger countLines;
     
-    double startTime;
+    
+    NSDateComponents *dateComponents;
+    NSInteger sHour;
+    NSInteger sMinute;
+    NSInteger sSecond;
     
     
     

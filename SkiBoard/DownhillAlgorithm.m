@@ -11,7 +11,7 @@
 @implementation DownhillAlgorithm
 
 #define NEWDOWNHILL 10
-#define BORDER 2
+#define BORDER 3
 
 -(id) init{
     [super init];

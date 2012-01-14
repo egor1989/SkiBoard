@@ -123,19 +123,33 @@
 }
 
 - (void) timer: (NSString *)action{
-    userLocation = [myAppDelegate getLastLocation];
-    double result;
+    
+    NSCalendar *calendar= [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendarUnit unitFlags = NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    
     if ([action isEqualToString:@"start"]) {
         
-        startTime = [userLocation.timestamp timeIntervalSince1970];
-        NSLog(@"start-time = %.5f", startTime);
-
+        dateComponents = [calendar components:unitFlags fromDate:[NSDate date]];
+        sHour = [dateComponents hour];
+        sMinute = [dateComponents minute];
+        sSecond = [dateComponents second];
+        
+ 
     }
+    
     if ([action isEqualToString:@"end"]) {
         
-         NSLog(@"tmp-time = %.5f", [userLocation.timestamp timeIntervalSince1970]);
-        result = [userLocation.timestamp timeIntervalSince1970] - startTime;
-        NSLog(@"time = %.5f", result);
+        dateComponents = [calendar components:unitFlags fromDate:[NSDate date]];
+        NSInteger rHour = [dateComponents hour] - sHour;
+        NSInteger rMinute = [dateComponents minute] - sMinute;
+        NSInteger rSecond = [dateComponents second] - sSecond;
+        if (rSecond<0) rSecond+=60;
+        if (rMinute<0) rMinute+=60;
+            
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Время катания" message:[NSString stringWithFormat:@"%i ч %i мин %i сек", rHour, rMinute, rSecond] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
     }
     
     

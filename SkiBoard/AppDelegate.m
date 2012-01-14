@@ -13,7 +13,7 @@
 @synthesize window = _window, countDown, altForView;
 
 #define NEWDOWNHILL 10
-#define BORDER 2
+#define BORDER 3
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
