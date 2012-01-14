@@ -11,6 +11,7 @@
 #import <CoreMotion/CoreMotion.h>
 #import <sqlite3.h> 
 #import "DatabaseActions.h"
+#import "DownhillAlgorithm.h"
 
 #define accelUpdateFrequency 60.0	
 #define locWarningTime 20.0
@@ -21,16 +22,17 @@
     CMMotionManager *motionManager;
     CLLocationManager *locationManager;
     CLLocation *lastLoc;
-    NSTimer *locTimer;
     BOOL tracking;
     BOOL downhill;
-    BOOL record;
+
     NSUserDefaults *userDefaults;
     NSInteger countDown;
     NSInteger countUp;
     NSInteger countLines;
-    double lastAlt;
+    double altForView;
     
+    
+    DownhillAlgorithm *downhillAlgorithm;
     DatabaseActions *databaseActions;
     
     
@@ -45,12 +47,15 @@
 - (void)stopGPSDetect;
 - (bool)getGPSState;
 - (bool)getMotionState;
-- (BOOL) isDownhill: (double) tmpAltitude;
-- (BOOL) isUphill: (double) tmpAltitude;
+
 - (NSArray*) readDatabase;
 
 
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic) NSInteger countDown;
+@property (nonatomic) double altForView;
+
+
 
 
 @end

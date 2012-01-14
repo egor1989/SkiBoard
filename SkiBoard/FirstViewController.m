@@ -32,15 +32,15 @@
      name: @"accelNotification"
      object: nil];
     
-  /*  [[NSNotificationCenter defaultCenter]	
+   [[NSNotificationCenter defaultCenter]	
      addObserver: self
      selector: @selector(showStat)
      name: @"locateNotification"
-     object: nil]; */
+     object: nil]; 
     
     [[NSNotificationCenter defaultCenter]	
      addObserver: self
-     selector: @selector(showStat)
+     selector: @selector(addDownhill)
      name: @"addCountLines"
      object: nil];
      databaseAction = [[DatabaseActions alloc] initDataBase];
@@ -55,11 +55,17 @@
     
 }
 
-- (void)showStat{
-    NSLog(@"showStat"); 
+- (void)addDownhill{
     countLines++;
     lines.text=[NSString stringWithFormat:@"%i", countLines];
-  //  userLocation = [myAppDelegate getLastLocation];
+    
+}
+
+- (void)showStat{
+    NSLog(@"showStat");
+    record.text = [NSString stringWithFormat:@"%i",[myAppDelegate countDown]];
+    alt.text = [NSString stringWithFormat:@"%.5f", [myAppDelegate altForView]];
+     //  userLocation = [myAppDelegate getLastLocation];
   //  avSpeed.text = [NSString stringWithFormat:@"%.2f", [userLocation speed]];
        
     
@@ -83,6 +89,7 @@
 }
 
 - (IBAction) startTracking{
+    
     NSString *title = trackButton.titleLabel.text;
     NSLog(@"title= %@", title);
     if ([title isEqualToString:@"Stop"]){

@@ -42,6 +42,10 @@
     IBOutlet UILabel *lines;
     IBOutlet UIView *graphView;
     IBOutlet UIButton *trackButton;
+    
+    IBOutlet UILabel *alt;
+    IBOutlet UILabel *record;
+    
 }
 - (void)accelerometer;
 - (void)showStat;
@@ -50,6 +54,7 @@
 - (IBAction) takeMax;
 - (IBAction) startTracking;
 - (void) showTmp;
+- (void)addDownhill;
 - (void) timer: (NSString *)action;
 
     

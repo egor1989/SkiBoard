@@ -18,7 +18,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <view contentMode="scaleToFill" id="xCI-Zq-a57">
-                                <rect key="frame" x="7" y="230" width="306" height="206"/>
+                                <rect key="frame" x="7" y="251" width="306" height="206"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
@@ -131,11 +131,26 @@
                                     <action selector="startTracking" destination="2" eventType="touchUpInside" id="JSD-ca-ovp"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" minimumFontSize="10" id="zol-Dn-cK7">
+                                <rect key="frame" x="26" y="222" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" minimumFontSize="10" id="PUU-tY-0ia">
+                                <rect key="frame" x="206" y="222" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Stat" image="first" id="7"/>
                     <connections>
+                        <outlet property="alt" destination="zol-Dn-cK7" id="MTQ-ba-1AI"/>
                         <outlet property="avAlt" destination="4hf-zn-Jmz" id="Yt1-Yu-fyg"/>
                         <outlet property="avSpeed" destination="qyk-0a-IBN" id="7ho-Mt-xQb"/>
                         <outlet property="distance" destination="kLC-50-zgE" id="EeU-ur-Isp"/>
@@ -143,6 +158,7 @@
                         <outlet property="lines" destination="dhb-Ew-bjg" id="bgn-QL-8yP"/>
                         <outlet property="maxAlt" destination="s27-Ai-2cM" id="Hu1-ZA-IkC"/>
                         <outlet property="maxSpeed" destination="eGP-xG-c4p" id="CmD-j1-2wb"/>
+                        <outlet property="record" destination="PUU-tY-0ia" id="5pF-qw-cLJ"/>
                         <outlet property="trackButton" destination="4Gg-l7-pe2" id="c6e-WO-U8T"/>
                         <outlet property="usefulTime" destination="MB5-Dn-k02" id="AS1-fY-2PB"/>
                     </connections>
@@ -209,6 +225,7 @@
                 <relationship kind="action" name="clearDataBase"/>
                 <relationship kind="action" name="startTracking"/>
                 <relationship kind="action" name="takeMax"/>
+                <relationship kind="outlet" name="alt" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="avAlt" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="avSpeed" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="distance" candidateClass="UILabel"/>
@@ -216,6 +233,7 @@
                 <relationship kind="outlet" name="lines" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="maxAlt" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="maxSpeed" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="record" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="trackButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="usefulTime" candidateClass="UILabel"/>
             </relationships>

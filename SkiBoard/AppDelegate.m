@@ -10,7 +10,7 @@
 
 @implementation AppDelegate
 
-@synthesize window = _window;
+@synthesize window = _window, countDown, altForView;
 
 #define NEWDOWNHILL 10
 #define BORDER 2
@@ -36,7 +36,9 @@
     databaseActions = [[DatabaseActions alloc] initDataBase];
     countDown = 0;
     countUp = 0;
-    record = NO;
+    
+    
+    downhillAlgorithm = [[DownhillAlgorithm alloc] init];
         
     // Override point for customization after application launch.
     return YES;
@@ -90,102 +92,51 @@
 
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
-    [[NSNotificationCenter defaultCenter]	postNotificationName:	@"locationWarningOFF" object:  nil];
+    
+
     [self startMotionDetect];
-    if ([locTimer isValid]){
-        [locTimer invalidate];
-        locTimer=nil;
-    }
     
     tracking = [userDefaults boolForKey:@"tracking"];
-   // NSLog(@"tracking = %@", tracking);
-  //  NSLog(@"old lat= %@, old long=%@, new lat = %@, new lon = %@", oldLocation.coordinate.latitude, oldLocation.coordinate.longitude, newLocation.coordinate.latitude, newLocation.coordinate.longitude);
-    
-   
-    
+    if (tracking) {
+        NSLog(@"tracking init");
+    }
+
     lastLoc = [[CLLocation alloc] initWithCoordinate:newLocation.coordinate altitude:newLocation.altitude horizontalAccuracy:newLocation.horizontalAccuracy verticalAccuracy:newLocation.verticalAccuracy course:newLocation.course speed:newLocation.speed timestamp:newLocation.timestamp];
     
     NSLog(@"countDown = %i, countUp = %i", countDown, countUp);
-    if (countDown<BORDER) {
-       record=[self isDownhill:[[NSString stringWithFormat:@"%.2f", [lastLoc altitude]] doubleValue]];  
+   
+    if (countDown<=BORDER+1) {
+       countDown=[downhillAlgorithm isDownhill:[[NSString stringWithFormat:@"%.2f", [lastLoc altitude]] doubleValue]]; 
+        
     }
    
-    if (countDown>BORDER+1) {
-        record=[self isUphill:[[NSString stringWithFormat:@"%.2f", [lastLoc altitude]] doubleValue]];
+    if (countDown>BORDER) {
+        countUp=[downhillAlgorithm isUphill:[[NSString stringWithFormat:@"%.2f", [lastLoc altitude]] doubleValue]];
+        if (countUp>BORDER) countDown=0;
+        
+        
     }
     
     if (countDown>NEWDOWNHILL){
         [[NSNotificationCenter defaultCenter]	postNotificationName:	@"addCountLines" object:  nil];
     }
     
-    if (record) {
+    if (countDown>=BORDER) {
+        
         [databaseActions addRecord];
     }
+    
+    altForView = [[NSString stringWithFormat:@"%.2f", [lastLoc altitude]] doubleValue];
 
     
     [[NSNotificationCenter defaultCenter]	postNotificationName:	@"locateNotification" object:  nil];
 
-    locTimer = [NSTimer scheduledTimerWithTimeInterval:locWarningTime
-                                                target:self
-                                              selector:@selector(warningButton)
-                                              userInfo:nil
-                                               repeats:YES];
+
     
 }
 
 
 
-- (BOOL) isDownhill: (double) tmpAltitude{
-    
-    BOOL result = NO;
-    NSLog(@"altitude = %.2f", tmpAltitude);
-    
-    if (countDown == 0) {
-        lastAlt = tmpAltitude;
-        countDown++;
-    }
-    else if (lastAlt > tmpAltitude) {
-        NSLog(@"%.2f > %.2f", lastAlt, tmpAltitude);    
-        countDown++;
-    }
-        else countDown=1;
-
-    
-    if(countDown>BORDER) {
-        result=YES;
-        NSLog(@"!!!Downhill!!!");
-    }
-    NSLog(@"COUNTDOWN=%i",countDown);
-    lastAlt = tmpAltitude;
-    return result;
-}
-
-- (BOOL) isUphill: (double) tmpAltitude{
-    BOOL result = YES;
-    NSLog(@"altitude = %.2f", tmpAltitude);
-    
-    if (countUp == 0) {
-        lastAlt = tmpAltitude;
-        countUp++;
-    }
-    
-    
-    else if (lastAlt<tmpAltitude) {
-        NSLog(@"%.2f < %.2f", lastAlt, tmpAltitude); 
-        countUp++;
-    }
-        else countUp = 1;
-  
-    if(countUp>BORDER) {
-        result=NO;
-        countDown = 0;
-        NSLog(@"!!!Uphill!!!");
-    }
-    
-    lastAlt = tmpAltitude;
-    NSLog(@"COUNTUP=%i",countUp);
-    return result; 
-}
 
 
 -(void)warningButton{

@@ -30,6 +30,7 @@
 		53CAB08614B34E54003FE7E0 /* skiboard.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 53CAB08514B34E54003FE7E0 /* skiboard.sqlite */; };
 		53CAB08814B3507D003FE7E0 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53CAB08714B3507D003FE7E0 /* libsqlite3.0.dylib */; };
 		53CAB08F14B35B99003FE7E0 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53CAB08E14B35B99003FE7E0 /* CoreMotion.framework */; };
+		53FC75C414C1C77B00CB1B2B /* DownhillAlgorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = 53FC75C314C1C77B00CB1B2B /* DownhillAlgorithm.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -144,6 +145,8 @@
 		53CAB08514B34E54003FE7E0 /* skiboard.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = skiboard.sqlite; sourceTree = SOURCE_ROOT; };
 		53CAB08714B3507D003FE7E0 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		53CAB08E14B35B99003FE7E0 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		53FC75C214C1C77B00CB1B2B /* DownhillAlgorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownhillAlgorithm.h; sourceTree = "<group>"; };
+		53FC75C314C1C77B00CB1B2B /* DownhillAlgorithm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownhillAlgorithm.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -302,6 +305,7 @@
 		538EBD5714ACBC140017B6F3 /* SkiBoard */ = {
 			isa = PBXGroup;
 			children = (
+				53FC75C014C1C74000CB1B2B /* Algorithm */,
 				539D80F914B9E416001BFFB2 /* Design */,
 				53CAB08414B34E38003FE7E0 /* DataBase */,
 				538EBD6014ACBC140017B6F3 /* AppDelegate.h */,
@@ -352,6 +356,15 @@
 				27653BE714B761F7002E61AC /* Info.m */,
 			);
 			name = DataBase;
+			sourceTree = "<group>";
+		};
+		53FC75C014C1C74000CB1B2B /* Algorithm */ = {
+			isa = PBXGroup;
+			children = (
+				53FC75C214C1C77B00CB1B2B /* DownhillAlgorithm.h */,
+				53FC75C314C1C77B00CB1B2B /* DownhillAlgorithm.m */,
+			);
+			name = Algorithm;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -429,6 +442,7 @@
 				5391D41414B60FBE0085D1A8 /* DatabaseActions.m in Sources */,
 				27CC4A9814B6040600058115 /* TUTSimpleScatterPlot.m in Sources */,
 				27653BE814B761F7002E61AC /* Info.m in Sources */,
+				53FC75C414C1C77B00CB1B2B /* DownhillAlgorithm.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
