@@ -28,7 +28,7 @@
     gpsState=NO;
     locationManager=[[CLLocationManager alloc] init];
     locationManager.delegate=self;
-    locationManager.desiredAccuracy=kCLLocationAccuracyNearestTenMeters;
+    locationManager.desiredAccuracy=kCLLocationAccuracyBest;
     //[self startGPSDetect];
     
     lastLoc = [[CLLocation alloc] init];
