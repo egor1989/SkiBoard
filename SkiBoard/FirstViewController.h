@@ -35,7 +35,7 @@
     
     //
     BOOL aTimer;
-    DownhillAlgorithm *downhillAlgorithm;
+    //DownhillAlgorithm *downhillAlgorithm;
     
     DatabaseActions *databaseAction;
     
@@ -45,11 +45,11 @@
     IBOutlet UILabel *avAlt;
     IBOutlet UILabel *maxSpeed;
     IBOutlet UILabel *avSpeed;
-    IBOutlet UILabel *usefulTime;
     IBOutlet UILabel *distance;
     IBOutlet UILabel *lines;
     IBOutlet UIView *graphView;
     IBOutlet UIButton *trackButton;
+    IBOutlet UILabel *aTime;
     
     IBOutlet UILabel *alt;
     IBOutlet UILabel *record;
@@ -67,6 +67,7 @@
 - (void)addDownhill;
 - (void) timer: (NSString *)action;
 
+@property (nonatomic, retain) DownhillAlgorithm *downhillAlgorithm;
     
 
 

@@ -11,6 +11,7 @@
 #define myAppDelegate (AppDelegate*) [[UIApplication sharedApplication] delegate]
 
 @implementation FirstViewController
+@synthesize downhillAlgorithm;
 
 
 
@@ -65,7 +66,8 @@
     }
     else {
         [downhillAlgorithm timer:@"stop"];
-         }
+        aTimer = NO;
+    }
     
 }
 
@@ -81,6 +83,11 @@
     record.text = [NSString stringWithFormat:@"%i",[myAppDelegate countDown]];
     alt.text = [NSString stringWithFormat:@"%.5f", [myAppDelegate altForView]];
     up.text = [NSString stringWithFormat:@"%.5f", [myAppDelegate countUp]];
+    //[downhillAlgorithm.resTime retain];
+    
+    NSLog(@"time=%@",self.downhillAlgorithm.resTime);
+ //   aTime.text = [downhillAlgorithm resTime];
+    
      //  userLocation = [myAppDelegate getLastLocation];
   //  avSpeed.text = [NSString stringWithFormat:@"%.2f", [userLocation speed]];
        

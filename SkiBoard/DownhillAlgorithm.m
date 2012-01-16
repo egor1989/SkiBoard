@@ -9,6 +9,7 @@
 #import "DownhillAlgorithm.h"
 
 @implementation DownhillAlgorithm
+@synthesize resTime;
 
 #define NEWDOWNHILL 10
 #define BORDER 3
@@ -20,56 +21,65 @@
     countLines=0;
     return self;
     timerRun=NO;
+    rSec=0, rMin=0, rSec=0;
+    resTime = @"0:0:0";
 }
 
 
 - (void) timer: (NSString *)action{
     
     if ([action isEqualToString:@"start"]){
-    NSDate *startTime = [NSDate dateWithTimeIntervalSinceNow:0];
-    sTime = startTime.timeIntervalSinceNow;
-       // NSLog(@"%f",sTime);
+    NSDate *startTime = [NSDate date];
+    sTime = startTime.timeIntervalSince1970;
     }
+    
     if ([action isEqualToString:@"stop"]) {
-        NSDate *endTime = [NSDate dateWithTimeIntervalSinceNow:0];
-        double eTime = endTime.timeIntervalSinceNow;
+        NSDate *endTime = [NSDate date];
+        double eTime = endTime.timeIntervalSince1970;
         
         double res = eTime-sTime;
+        
         NSLog(@"%f - %f = %f", sTime, eTime, res);
+        [self convertTime:res];
     }
+}
+
+- (void) convertTime: (double) result{
+    NSLog(@"res=%f",result);
+    NSInteger sec=0, min=0, hour=0;
+    sec = (int) round(result);
+    if (sec/3600>0) {
+        hour = (int) sec/3600;
+        sec = sec - hour*3600;
+    }
+    if (sec/60>0) {
+        min = (int) sec/60;
+        sec = sec - min*60;
+    }
+    NSLog(@"%ih:%im:%is",hour,min,sec);
+    [self resultTime:hour min:min sec:sec];
+}
+
+- (void) resultTime: (NSInteger) hour min:(NSInteger) min sec:(NSInteger) sec{
+    rSec+=sec;
+    if (rSec>60) {
+        rSec-=60; 
+        rMin++;
+    }
+    rMin+=min;
+    if (rMin>60) {
+        rMin-=60;
+        rHour++;
+    }
+    rHour+=hour;
     
+    NSLog(@"%ih:%im:%is",rHour,rMin,rSec);
+    resTime = [NSString stringWithFormat:@"%ih:%im:%is",rHour,rMin,rSec]; 
     
 }
 
 
-/*
- - (void) timer: (NSString *)action{
- 	
-     userLocation = [myAppDelegate getLastLocation];
- 	
-     double result;
- 	
-     if ([action isEqualToString:@"start"]) {
- 	
-         startTime = [userLocation.timestamp timeIntervalSince1970];
- 	
-         NSLog(@"start-time = %.5f", startTime);
- 	
- 
- 	
-    }
- 	
-     if ([action isEqualToString:@"end"]) {
-	
-          NSLog(@"tmp-time = %.5f", [userLocation.timestamp timeIntervalSince1970]);
- 	
-         result = [userLocation.timestamp timeIntervalSince1970] - startTime;
- 	
-         NSLog(@"time = %.5f", result);
- 	
-    }
-}
- */
+
 
 - (NSInteger) isDownhill: (double) tmpAltitude{
     
@@ -87,6 +97,8 @@
     
     
     if(countDown>BORDER) {
+        timerRun = YES;
+        [self timer:@"start"];
         
         NSLog(@"!!!Downhill!!!");
     }
@@ -114,6 +126,7 @@
     
     if(countUp>BORDER) {
         
+        if (timerRun) [self timer:@"stop"]; 
         
         NSLog(@"!!!Uphill!!!");
     }
