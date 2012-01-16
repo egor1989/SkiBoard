@@ -54,7 +54,7 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic) NSInteger countDown;
 @property (nonatomic) double altForView;
-
+@property (nonatomic) NSInteger countUp;
 
 
 

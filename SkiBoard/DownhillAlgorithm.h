@@ -14,11 +14,16 @@
     NSInteger countLines;
     double lastAlt;
     
+    BOOL timerRun;
+    
+    
+    double sTime;
     
 
 }
 
 - (NSInteger) isUphill: (double) tmpAltitude;
 - (NSInteger) isDownhill: (double) tmpAltitude;
+- (void) timer: (NSString *)action;
 
 @end

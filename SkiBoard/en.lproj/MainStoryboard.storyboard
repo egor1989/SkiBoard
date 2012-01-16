@@ -145,6 +145,28 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" minimumFontSize="10" id="eUe-uC-ifK">
+                                <rect key="frame" x="258" y="222" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="iIb-0I-xzu">
+                                <rect key="frame" x="195" y="73" width="34" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="T">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="actionTimer" destination="2" eventType="touchUpInside" id="oDV-Pk-IQn"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -160,6 +182,7 @@
                         <outlet property="maxSpeed" destination="eGP-xG-c4p" id="CmD-j1-2wb"/>
                         <outlet property="record" destination="PUU-tY-0ia" id="5pF-qw-cLJ"/>
                         <outlet property="trackButton" destination="4Gg-l7-pe2" id="c6e-WO-U8T"/>
+                        <outlet property="up" destination="eUe-uC-ifK" id="IHK-Eh-SZ9"/>
                         <outlet property="usefulTime" destination="MB5-Dn-k02" id="AS1-fY-2PB"/>
                     </connections>
                 </viewController>
@@ -214,37 +237,6 @@
         <image name="second" width="16" height="16"/>
         <image name="stat(alpha).png" width="639" height="874"/>
     </resources>
-    <classes>
-        <class className="CPTGraphHostingView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CPTGraphHostingView.h"/>
-        </class>
-        <class className="FirstViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FirstViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addRecord"/>
-                <relationship kind="action" name="clearDataBase"/>
-                <relationship kind="action" name="startTracking"/>
-                <relationship kind="action" name="takeMax"/>
-                <relationship kind="outlet" name="alt" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="avAlt" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="avSpeed" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="distance" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="graphView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="lines" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="maxAlt" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="maxSpeed" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="record" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="trackButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="usefulTime" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="SecondViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SecondViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="_graphHostingView" candidateClass="CPTGraphHostingView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

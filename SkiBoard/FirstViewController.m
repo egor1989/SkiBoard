@@ -44,9 +44,11 @@
      name: @"addCountLines"
      object: nil];
      databaseAction = [[DatabaseActions alloc] initDataBase];
+    downhillAlgorithm = [[DownhillAlgorithm alloc] init];
     
     countLines = 0; 
     [self showTmp];
+    aTimer = NO;
     
     // Do any additional setup after loading the view, typically from a nib.
 }
@@ -54,6 +56,19 @@
 - (void)accelerometer{
     
 }
+
+
+- (IBAction) actionTimer{
+    if (!aTimer) {
+        [downhillAlgorithm timer: @"start"]; 
+        aTimer=YES;
+    }
+    else {
+        [downhillAlgorithm timer:@"stop"];
+         }
+    
+}
+
 
 - (void)addDownhill{
     countLines++;
@@ -65,6 +80,7 @@
     NSLog(@"showStat");
     record.text = [NSString stringWithFormat:@"%i",[myAppDelegate countDown]];
     alt.text = [NSString stringWithFormat:@"%.5f", [myAppDelegate altForView]];
+    up.text = [NSString stringWithFormat:@"%.5f", [myAppDelegate countUp]];
      //  userLocation = [myAppDelegate getLastLocation];
   //  avSpeed.text = [NSString stringWithFormat:@"%.2f", [userLocation speed]];
        

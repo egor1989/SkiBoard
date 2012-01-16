@@ -19,7 +19,57 @@
     countUp=0;
     countLines=0;
     return self;
+    timerRun=NO;
 }
+
+
+- (void) timer: (NSString *)action{
+    
+    if ([action isEqualToString:@"start"]){
+    NSDate *startTime = [NSDate dateWithTimeIntervalSinceNow:0];
+    sTime = startTime.timeIntervalSinceNow;
+       // NSLog(@"%f",sTime);
+    }
+    if ([action isEqualToString:@"stop"]) {
+        NSDate *endTime = [NSDate dateWithTimeIntervalSinceNow:0];
+        double eTime = endTime.timeIntervalSinceNow;
+        
+        double res = eTime-sTime;
+        NSLog(@"%f - %f = %f", sTime, eTime, res);
+    }
+    
+    
+}
+
+
+/*
+ - (void) timer: (NSString *)action{
+ 	
+     userLocation = [myAppDelegate getLastLocation];
+ 	
+     double result;
+ 	
+     if ([action isEqualToString:@"start"]) {
+ 	
+         startTime = [userLocation.timestamp timeIntervalSince1970];
+ 	
+         NSLog(@"start-time = %.5f", startTime);
+ 	
+ 
+ 	
+    }
+ 	
+     if ([action isEqualToString:@"end"]) {
+	
+          NSLog(@"tmp-time = %.5f", [userLocation.timestamp timeIntervalSince1970]);
+ 	
+         result = [userLocation.timestamp timeIntervalSince1970] - startTime;
+ 	
+         NSLog(@"time = %.5f", result);
+ 	
+    }
+}
+ */
 
 - (NSInteger) isDownhill: (double) tmpAltitude{
     
@@ -33,7 +83,7 @@
         NSLog(@"%.2f > %.2f", lastAlt, tmpAltitude);    
         countDown++;
     }
-    else countDown=1;
+   // else countDown=1;
     
     
     if(countDown>BORDER) {
@@ -60,11 +110,11 @@
         NSLog(@"%.2f < %.2f", lastAlt, tmpAltitude); 
         countUp++;
     }
-    else countUp = 1;
+    //else countUp = 1;
     
     if(countUp>BORDER) {
         
-       
+        
         NSLog(@"!!!Uphill!!!");
     }
     

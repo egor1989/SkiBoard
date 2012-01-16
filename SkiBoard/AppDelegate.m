@@ -10,7 +10,7 @@
 
 @implementation AppDelegate
 
-@synthesize window = _window, countDown, altForView;
+@synthesize window = _window, countDown, countUp, altForView;
 
 #define NEWDOWNHILL 10
 #define BORDER 3
@@ -105,26 +105,29 @@
     
     NSLog(@"countDown = %i, countUp = %i", countDown, countUp);
    
-    if (countDown<=BORDER+1) {
-       countDown=[downhillAlgorithm isDownhill:[[NSString stringWithFormat:@"%.2f", [lastLoc altitude]] doubleValue]]; 
-        
+    if (countDown<BORDER) {
+        countDown=[downhillAlgorithm isDownhill:[[NSString stringWithFormat:@"%.2f", [lastLoc altitude]] doubleValue]];
+        //countUp=[downhillAlgorithm isUphill:[[NSString stringWithFormat:@"%.2f", [lastLoc altitude]] doubleValue]];
     }
    
     if (countDown>BORDER) {
+        [databaseActions addRecord];
         countUp=[downhillAlgorithm isUphill:[[NSString stringWithFormat:@"%.2f", [lastLoc altitude]] doubleValue]];
         if (countUp>BORDER) countDown=0;
-        
-        
+    }
+    
+    if(countUp>BORDER){
+        countDown=[downhillAlgorithm isDownhill:[[NSString stringWithFormat:@"%.2f", [lastLoc altitude]] doubleValue]];
+        if (countDown>BORDER) countUp=0;
     }
     
     if (countDown>NEWDOWNHILL){
         [[NSNotificationCenter defaultCenter]	postNotificationName:	@"addCountLines" object:  nil];
     }
     
-    if (countDown>=BORDER) {
-        
-        [databaseActions addRecord];
-    }
+//    if (countDown>=BORDER) {
+//        [databaseActions addRecord];
+//    }
     
     altForView = [[NSString stringWithFormat:@"%.2f", [lastLoc altitude]] doubleValue];
 

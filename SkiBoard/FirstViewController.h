@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import "DatabaseActions.h"
+//for timer - delete later
+#import "DownhillAlgorithm.h"
 
 
 
@@ -31,7 +33,9 @@
     NSInteger sSecond;
     
     
-    
+    //
+    BOOL aTimer;
+    DownhillAlgorithm *downhillAlgorithm;
     
     DatabaseActions *databaseAction;
     
@@ -49,6 +53,7 @@
     
     IBOutlet UILabel *alt;
     IBOutlet UILabel *record;
+    IBOutlet UILabel *up;
     
 }
 - (void)accelerometer;
@@ -57,6 +62,7 @@
 - (IBAction) addRecord;
 - (IBAction) takeMax;
 - (IBAction) startTracking;
+- (IBAction) actionTimer; //for timer
 - (void) showTmp;
 - (void)addDownhill;
 - (void) timer: (NSString *)action;
